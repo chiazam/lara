@@ -73,7 +73,7 @@ class Start
 
         $eachbbcnews = $crawler->filter('div.media.block-link');
 
-        $eachbbcnews->filter('a.block-link__overlay-link')->each(function ($node, $i) use ($allbbcnews) {
+        $eachbbcnews->filter('a.block-link__overlay-link')->each(function ($node, $i) use (&$allbbcnews) {
 
             $allbbcnews[$i] = ['title' => $node->text(), "link" => $node->attr('href')];
 
@@ -81,9 +81,10 @@ class Start
 
             // dump($node->text());
 
+            // dump($allbbcnews);
         });
 
-        $eachbbcnews->filter('a.media__tag.tag.tag--news')->each(function ($node, $i) use ($allbbcnews) {
+        $eachbbcnews->filter('a.media__tag.tag.tag--news')->each(function ($node, $i) use (&$allbbcnews) {
 
             $allbbcnews[$i]['country'] = ['name' => $node->text(), "link" => $node->attr('href')];
 
@@ -93,7 +94,7 @@ class Start
 
         });
 
-        $eachbbcnews->filter('p.media__summary')->each(function ($node, $i) use ($allbbcnews) {
+        $eachbbcnews->filter('p.media__summary')->each(function ($node, $i) use (&$allbbcnews) {
 
             $allbbcnews[$i]['summary'] = $node->text();
 
@@ -101,13 +102,13 @@ class Start
 
         });
 
-        $eachbbcnews->filter('img.image-replace')->each(function ($node, $i) use ($allbbcnews) {
+        $eachbbcnews->filter('img.image-replace')->each(function ($node, $i) use (&$allbbcnews) {
 
             $allbbcnews[$i]['img'] = $node->attr('src');
 
             // dump($node->attr('src'));
         });
 
-        // dump(json_encode($allbbcnews));
+        dump(json_encode($allbbcnews));
     }
 }
