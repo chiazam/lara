@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Models\Start;
+use Goutte\Client;
+use Symfony\Component\BrowserKit\HttpBrowser;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +25,9 @@ use \App\Models\Start;
 
 Route::get('/', function () {
     return view('i', Start::startinfo());
+});
+
+Route::get('scrapcrawl', function () {
+
+    Start::scrape('https://www.bbc.com/');
 });
