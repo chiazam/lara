@@ -10,6 +10,7 @@ use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
 use jcobhams\NewsApi\NewsApi;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class Start
 {
@@ -130,9 +131,9 @@ class Start
 
                 $value['link'] = self::linkabsolute($host, $value['link']);
 
-                $value['tag']['link'] = self::linkabsolute($host, $value['tag']['link']);
+                $value['taglink'] = self::linkabsolute($host, $value['taglink']);
 
-                $value['img']['src'] = self::linkabsolute($host, $value['img']['src']);
+                $value['imgsrc'] = self::linkabsolute($host, $value['imgsrc']);
 
                 array_push($allnews, $value);
             }
@@ -141,7 +142,7 @@ class Start
         return $allnews;
     }
 
-    static function scrapeBBC()
+    static function scrapeBBC(bool $save = false)
     {
 
         $host = 'https://www.bbc.com';
@@ -173,7 +174,9 @@ class Start
 
         $crawler->filter('div.delayed-image-load')->each(function ($node, $i) use (&$allnews) {
 
-            $allnews[$i]['img'] = ['src' => $node->attr('data-src'), 'alt' => $node->attr('data-alt')];
+            $allnews[$i]['imgsrc'] = $node->attr('data-src');
+
+            $allnews[$i]['imgalt'] = $node->attr('data-alt');
         });
 
         $crawler->filter('p.media__summary')->each(function ($node, $i) use (&$allnews) {
@@ -183,15 +186,22 @@ class Start
 
         $crawler->filter('a.media__tag.tag')->each(function ($node, $i) use (&$allnews) {
 
-            $allnews[$i]['tag'] = [
-                'name' => $node->text(),
-                "link" => $node->attr('href'),
-            ];
+            $allnews[$i]['tagname'] = $node->text();
+
+            $allnews[$i]["taglink"] = $node->attr('href');
         });
+
+        $thenews = self::perfectBBCnews($host, $allnews, ['title', 'link', 'imgsrc', 'imgalt', 'summary', 'tagname', 'taglink', 'source', 'sourceid', 'date']);
+
+        if ($save == true) {
+
+            self::BulkSaveNews($thenews);
+        }
 
         return [
             "urlinfo" => $urlinfo,
-            "news" => self::perfectBBCnews($host, $allnews, ['title', 'link', 'img', 'summary', 'tag'])
+            // "news" => $allnews
+            "news" => $thenews
         ];
     }
 
@@ -206,16 +216,15 @@ class Start
 
                 "title" => $value["title"],
                 "link" => $value["url"],
+                "imgsrc" => $value["urlToImage"],
+                "imgalt" => null,
+                "summary" => $value["description"],
+                "tagname" => null,
+                "taglink" => null,
+                "author" => $value["author"],
                 "source" => $value["source"]["name"],
                 "sourceid" => $value["source"]["id"],
-                "date" => self::dateformat($value["publishedAt"]),
-                "img" => [
-                    "src" => $value["urlToImage"],
-                    "alt" => null
-                ],
-                "summary" => $value["description"],
-                "author" => $value["author"],
-                "tag" => null
+                "date" => self::dateformat($value["publishedAt"])
             ]);
         }
 
@@ -224,14 +233,12 @@ class Start
 
     const NewsApiKey = 'fd19822acf9e478b92af0c9608dffa14';
 
-    static function scrapeNewsApi()
+    static function scrapeNewsApi(bool $save = false)
     {
 
         $newsapi = new NewsApi(self::NewsApiKey);
 
         $categories = $newsapi->getCategories();
-
-        $sorts = $newsapi->getSortBy();
 
         $curr_category = self::randfromlist($categories);
 
@@ -245,8 +252,15 @@ class Start
 
         $allnews = self::objtoarr($newsapi->getTopHeadlines("", $sources_str, null, null, $page_size, $page))['articles'];
 
+        $thenews = self::perfectNewsApinews($allnews);
+
+        if ($save == true) {
+
+            self::BulkSaveNews($thenews);
+        }
+
         return [
-            "news" => self::perfectNewsApinews($allnews),
+            "news" => $thenews,
             "sources" => $sources,
             "categories" => $categories
         ];
@@ -263,16 +277,15 @@ class Start
 
                 "title" => $value["webTitle"],
                 "link" => $value["webUrl"],
+                "imgsrc" => null,
+                "imgalt" => null,
+                "summary" => null,
+                "tagname" => $value['sectionName'],
+                "taglink" => self::linkabsolute($host, $value['sectionId']),
+                "author" => null,
                 "source" => "Guardian",
                 "sourceid" => "guardian",
-                "date" => self::dateformat($value["webPublicationDate"]),
-                "img" => null,
-                "summary" => null,
-                "author" => null,
-                "tag" => [
-                    'name' => $value['sectionName'],
-                    "link" => self::linkabsolute($host, $value['sectionId']),
-                ]
+                "date" => self::dateformat($value["webPublicationDate"])
             ]);
         }
 
@@ -281,7 +294,7 @@ class Start
 
     const GuardianApiKey = 'test';
 
-    static function scrapeGuardianApi()
+    static function scrapeGuardianApi(bool $save = false)
     {
 
         $page_size = 20;
@@ -300,24 +313,44 @@ class Start
 
         $allnews = (json_decode($news, true))['response']['results'];
 
+        $thenews = self::perfectGuardianApinews($host2, $allnews);
+
+        if ($save == true) {
+
+            self::BulkSaveNews($thenews);
+        }
+
         return [
             "urlinfo" => $urlinfo,
-            "news" => self::perfectGuardianApinews($host2, $allnews)
+            "news" => $thenews
         ];
     }
 
-    static function scrapeAllApi()
+    static function scrapeAllApi(bool $save = false)
     {
 
-        $bbc = (self::scrapeBBC()['news']);
+        $bbc = (self::scrapeBBC($save)['news']);
 
-        $newsapi = (self::scrapeNewsApi()['news']);
+        $newsapi = (self::scrapeNewsApi($save)['news']);
 
-        $guardian = (self::scrapeGuardianApi()['news']);
+        $guardian = (self::scrapeGuardianApi($save)['news']);
 
         return [
             'news' => array_merge($bbc, $newsapi, $guardian),
             'sources' => ["BBC", 'Guardian', "NewsApi"]
         ];
+    }
+
+    static function BulkSaveNews(array $bulknews)
+    {
+
+        foreach ($bulknews as $key => $value) {
+
+            self::SaveNews($value);
+        }
+    }
+
+    static function SaveNews(array $news)
+    {
     }
 }
