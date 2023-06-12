@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Models\Start;
-use Goutte\Client;
 use Illuminate\Http\Request;
-use Symfony\Component\BrowserKit\HttpBrowser;
+use \App\Models\Start;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,22 +24,4 @@ use Symfony\Component\BrowserKit\HttpBrowser;
 
 Route::get('/', function () {
     return view('i', Start::startinfo());
-});
-
-Route::get('/scrapeBBC', function () {
-
-    return Start::scrapeBBC();
-});
-
-Route::get('/NewsApi', function () {
-
-    return Start::scrapeNewsApi();
-});
-
-Route::get('/GuardianApi', function () {
-
-    return Start::scrapeGuardianApi();
-});
-
-Route::get('/getNews', function (Request $request) {
 });

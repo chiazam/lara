@@ -305,4 +305,19 @@ class Start
             "news" => self::perfectGuardianApinews($host2, $allnews)
         ];
     }
+
+    static function scrapeAllApi()
+    {
+
+        $bbc = (self::scrapeBBC()['news']);
+
+        $newsapi = (self::scrapeNewsApi()['news']);
+
+        $guardian = (self::scrapeGuardianApi()['news']);
+
+        return [
+            'news' => array_merge($bbc, $newsapi, $guardian),
+            'sources' => ["BBC", 'Guardian', "NewsApi"]
+        ];
+    }
 }
