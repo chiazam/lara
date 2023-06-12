@@ -79,7 +79,46 @@ class Start
         return (self::isurl($link) == true) ? ($link) : ($host . $link);
     }
 
-    static function perfectnews(string $host, array $news, array $newsprop)
+    static function dateformat(string $date = null)
+    {
+
+        return date("Y-m-d", ($date != null) ? (strtotime($date)) : (strtotime(date("Y-m-d"))));
+    }
+
+    static function randfromlist(array $list)
+    {
+
+        return $list[array_rand($list)];
+    }
+
+    static function listkeyvalue(array $list, string $key)
+    {
+        $listout = [];
+
+        foreach ($list as $k => $value) {
+
+            if (self::checkisset($value, [$key])) {
+
+                array_push($listout, $value[$key]);
+            }
+        }
+
+        return $listout;
+    }
+
+    static function objtoarr($data)
+    {
+        if (is_array($data) || is_object($data)) {
+            $result = [];
+            foreach ($data as $key => $value) {
+                $result[$key] = (is_array($value) || is_object($value)) ? self::objtoarr($value) : $value;
+            }
+            return $result;
+        }
+        return $data;
+    }
+
+    static function perfectBBCnews(string $host, array $news, array $newsprop)
     {
 
         $allnews = [];
@@ -125,7 +164,9 @@ class Start
                 'title' => $node->text(),
                 "link" => $node->attr('href'),
                 'source' => "BBC",
-                "date" => date("Y-m-d")
+                "source-id" => "bbc",
+                "date" => self::dateformat(),
+                "author" => null,
             ];
         });
 
@@ -151,63 +192,47 @@ class Start
 
         return [
             "urlinfo" => $urlinfo,
-            "news" => self::perfectnews($host, $allnews, ['title', 'link', 'img', 'summary', 'tag'])
+            "news" => self::perfectBBCnews($host, $allnews, ['title', 'link', 'img', 'summary', 'tag'])
         ];
     }
 
     const NewsApiKey = 'fd19822acf9e478b92af0c9608dffa14';
 
-    static function randfromlist(array $list)
+    static function perfectNewsApinews(array $news)
     {
 
-        return $list[array_rand($list)];
-    }
+        $allnews = [];
 
-    static function listkeyvalue(array $list, string $key)
-    {
-        $listout = [];
+        foreach ($news as $key => $value) {
 
-        foreach ($list as $k => $value) {
+            array_push($allnews, [
 
-            if (self::checkisset($value, [$key])) {
-
-                array_push($listout, $value[$key]);
-            }
+                "title" => $value["title"],
+                "link" => $value["url"],
+                "source" => $value["source"]["name"],
+                "source-id" => $value["source"]["id"],
+                "date" => self::dateformat($value["publishedAt"]),
+                "img" => [
+                    "src" => $value["urlToImage"],
+                    "alt" => null
+                ],
+                "summary" => $value["description"],
+                "author" => $value["author"],
+                "tag" => null
+            ]);
         }
 
-        return $listout;
+        return $allnews;
     }
 
-    static function objtoarr($data)
-    {
-        if (is_array($data) || is_object($data)) {
-            $result = [];
-            foreach ($data as $key => $value) {
-                $result[$key] = (is_array($value) || is_object($value)) ? self::objtoarr($value) : $value;
-            }
-            return $result;
-        }
-        return $data;
-    }
-
-    static function scrapeNewsApi(Request $request)
+    static function scrapeNewsApi()
     {
 
         $newsapi = new NewsApi(self::NewsApiKey);
 
-        // $allnews = $newsapi->getEverything($q, $sources, $domains, $exclude_domains, $from, $to, $language, $sort_by,  $page_size, $page);
-
         $categories = $newsapi->getCategories();
 
         $sorts = $newsapi->getSortBy();
-
-        // $languages = $newsapi->getLanguages();
-
-        // $countries = $newsapi->getCountries();
-
-        // $curr_language = "en";
-
-        // $curr_country = self::randfromlist($countries);
 
         $curr_category = self::randfromlist($categories);
 
@@ -221,18 +246,25 @@ class Start
 
         $allnews = self::objtoarr($newsapi->getTopHeadlines("", $sources_str, null, null, $page_size, $page))['articles'];
 
-        // echo date("Y-m-d H:i:s", strtotime("2017-01-10T18:00:00.000Z"))
-
-        // dd($curr_category);
-
         return [
-            "news" => $allnews,
+            "news" => self::perfectNewsApinews($allnews),
             "sources" => $sources,
-            "categories" => $categories,
-            // "sorts" => $sorts
-            // "news" => $newsapi->getEverything("australia"),
-            // "languages" => $languages,
-            // "countries" => $countries
+            "categories" => $categories
         ];
+
+        // $allnews = $newsapi->getEverything($q, $sources, $domains, $exclude_domains, $from, $to, $language, $sort_by,  $page_size, $page);
+
+        // $languages = $newsapi->getLanguages();
+
+        // $countries = $newsapi->getCountries();
+
+        // $curr_language = "en";
+
+        // $curr_country = self::randfromlist($countries);
+
+        // "sorts" => $sorts
+        // "news" => $newsapi->getEverything("australia"),
+        // "languages" => $languages,
+        // "countries" => $countries
     }
 }
