@@ -172,9 +172,7 @@ class Start
 
         $crawler->filter('div.delayed-image-load')->each(function ($node, $i) use (&$allnews) {
 
-            // if (($i - 1) > 0) {
             $allnews[$i]['img'] = ['src' => $node->attr('data-src'), 'alt' => $node->attr('data-alt')];
-            // }
         });
 
         $crawler->filter('p.media__summary')->each(function ($node, $i) use (&$allnews) {
@@ -195,8 +193,6 @@ class Start
             "news" => self::perfectBBCnews($host, $allnews, ['title', 'link', 'img', 'summary', 'tag'])
         ];
     }
-
-    const NewsApiKey = 'fd19822acf9e478b92af0c9608dffa14';
 
     static function perfectNewsApinews(array $news)
     {
@@ -225,6 +221,8 @@ class Start
         return $allnews;
     }
 
+    const NewsApiKey = 'fd19822acf9e478b92af0c9608dffa14';
+
     static function scrapeNewsApi()
     {
 
@@ -251,20 +249,37 @@ class Start
             "sources" => $sources,
             "categories" => $categories
         ];
+    }
 
-        // $allnews = $newsapi->getEverything($q, $sources, $domains, $exclude_domains, $from, $to, $language, $sort_by,  $page_size, $page);
 
-        // $languages = $newsapi->getLanguages();
 
-        // $countries = $newsapi->getCountries();
+    const GuardianApiKey = 'test';
 
-        // $curr_language = "en";
+    static function scrapeGuardianApi()
+    {
 
-        // $curr_country = self::randfromlist($countries);
+        $newsapi = new NewsApi(self::NewsApiKey);
 
-        // "sorts" => $sorts
-        // "news" => $newsapi->getEverything("australia"),
-        // "languages" => $languages,
-        // "countries" => $countries
+        $categories = $newsapi->getCategories();
+
+        $sorts = $newsapi->getSortBy();
+
+        $curr_category = self::randfromlist($categories);
+
+        $sources = self::objtoarr($newsapi->getSources($curr_category, null, null))['sources'];
+
+        $sources_str =  join(",", self::listkeyvalue($sources, "id"));
+
+        $page_size = 20;
+
+        $page = 1;
+
+        $allnews = self::objtoarr($newsapi->getTopHeadlines("", $sources_str, null, null, $page_size, $page))['articles'];
+
+        return [
+            "news" => self::perfectNewsApinews($allnews),
+            "sources" => $sources,
+            "categories" => $categories
+        ];
     }
 }

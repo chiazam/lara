@@ -33,10 +33,15 @@ Route::get('/scrapeBBC', function () {
     return Start::scrapeBBC();
 });
 
-Route::get('/getNews', function (Request $request) {
-});
-
 Route::get('/NewsApi', function () {
 
     return Start::scrapeNewsApi();
+});
+
+Route::get('/GuardianApi', function () {
+
+    return Start::scrapeGuardianApi();
+});
+
+Route::get('/getNews', function (Request $request) {
 });
