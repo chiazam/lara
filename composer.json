@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.7",
         "jcobhams/newsapi": "^1.0",
         "laravel/framework": "^8.75",
-        "laravel/sanctum": "^2.11",
+        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "symfony/browser-kit": "^5.4",
         "symfony/css-selector": "^5.4",
