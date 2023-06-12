@@ -165,7 +165,7 @@ class Start
                 'title' => $node->text(),
                 "link" => $node->attr('href'),
                 'source' => "BBC",
-                "source-id" => "bbc",
+                "sourceid" => "bbc",
                 "date" => self::dateformat(),
                 "author" => null,
             ];
@@ -207,7 +207,7 @@ class Start
                 "title" => $value["title"],
                 "link" => $value["url"],
                 "source" => $value["source"]["name"],
-                "source-id" => $value["source"]["id"],
+                "sourceid" => $value["source"]["id"],
                 "date" => self::dateformat($value["publishedAt"]),
                 "img" => [
                     "src" => $value["urlToImage"],
@@ -264,7 +264,7 @@ class Start
                 "title" => $value["webTitle"],
                 "link" => $value["webUrl"],
                 "source" => "Guardian",
-                "source-id" => "guardian",
+                "sourceid" => "guardian",
                 "date" => self::dateformat($value["webPublicationDate"]),
                 "img" => null,
                 "summary" => null,
