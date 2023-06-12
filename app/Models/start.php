@@ -201,28 +201,37 @@ class Start
 
         $sorts = $newsapi->getSortBy();
 
-        $languages = $newsapi->getLanguages();
+        // $languages = $newsapi->getLanguages();
 
-        $countries = $newsapi->getCountries();
+        // $countries = $newsapi->getCountries();
+
+        // $curr_language = "en";
+
+        // $curr_country = self::randfromlist($countries);
 
         $curr_category = self::randfromlist($categories);
 
-        $curr_language = "en";
-
-        $curr_countries = self::randfromlist($countries);
-
         $sources = self::objtoarr($newsapi->getSources($curr_category, null, null))['sources'];
+
+        $sources_str =  join(",", self::listkeyvalue($sources, "id"));
+
+        $page_size = 20;
+
+        $page = 1;
+
+        $allnews = self::objtoarr($newsapi->getTopHeadlines("", $sources_str, null, null, $page_size, $page))['articles'];
+
+        // echo date("Y-m-d H:i:s", strtotime("2017-01-10T18:00:00.000Z"))
 
         // dd($curr_category);
 
         return [
+            "news" => $allnews,
+            "sources" => $sources,
+            "categories" => $categories,
+            // "sorts" => $sorts
             // "news" => $newsapi->getEverything("australia"),
-            // "news" => $newsapi->getTopHeadlines($q, $sources, $country, $category, $page_size, $page),
-            "s" => self::listkeyvalue($sources, "id"),
-            // "sources" => $sources,
             // "languages" => $languages,
-            // "categories" => $categories,
-            // "sorts" => $sorts,
             // "countries" => $countries
         ];
     }
