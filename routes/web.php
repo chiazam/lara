@@ -29,5 +29,5 @@ Route::get('/', function () {
 
 Route::get('scrapcrawl', function () {
 
-    Start::scrape('https://www.bbc.com/');
+    return Start::scrapeBBC();
 });

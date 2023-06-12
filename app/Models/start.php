@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Symfony\Component\BrowserKit\Cookie;
-use Symfony\Component\BrowserKit\CookieJar;
+// use Symfony\Component\BrowserKit\Cookie;
+// use Symfony\Component\BrowserKit\CookieJar;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
+use jcobhams\NewsApi\NewsApi;
+
+// $newsapi = new NewsApi($your_api_key);
 
 class Start
 {
@@ -46,69 +49,95 @@ class Start
         return ($urlinfo);
     }
 
-    // https://spetalo.com/?r=wall&w=spetalo_1ddq8b3riu
-
-    public static function scrape(string $url)
+    public static function checknewsprop(array $eachnews, array $newsprop)
     {
+
+        $bool = true;
+
+        foreach ($newsprop as $key => $value) {
+
+            if (!isset($eachnews[$value])) {
+
+                $bool = false;
+
+                break;
+            }
+        }
+
+        return $bool;
+    }
+
+    public static function perfectnews(array $news, array $newsprop)
+    {
+
+        $allnews = [];
+
+
+
+
+        foreach ($news as $key => $value) {
+
+            if (self::checknewsprop($value, $newsprop) == true) {
+
+                array_push($allnews, $value);
+            }
+        }
+
+        return $allnews;
+    }
+
+    public static function scrapeBBC()
+    {
+
+        $url = 'https://www.bbc.com';
 
         $urlinfo = self::my_parse_url($url);
 
-        $domain =  $urlinfo['host'];
-
-        $jar = new CookieJar();
-        $jar->set(new Cookie('_name_session', 'value', null, null, $domain));
         $client = HttpClient::create([
-            'timeout' => 900,
+            'headers' => [],
+            'timeout' => 1000,
             'verify_peer' => false
         ]);
-        $browser = new HttpBrowser($client, null, $jar);
+        $browser = new HttpBrowser($client, null);
 
         $crawler = $browser->request('GET', $url);
 
-        $allbbcnews = [];
+        $allnews = [];
 
-        // $crawler->filter('div')->filter('h1')->each(function ($node) {
-        //     dump($node->text());
-        // });
+        $crawler->filter('a.media__link')->each(function ($node, $i) use (&$allnews) {
 
-        $eachbbcnews = $crawler->filter('div.media.block-link');
-
-        $eachbbcnews->filter('a.block-link__overlay-link')->each(function ($node, $i) use (&$allbbcnews) {
-
-            $allbbcnews[$i] = ['title' => $node->text(), "link" => $node->attr('href')];
-
-            // dump($node->attr('href'));
-
-            // dump($node->text());
-
-            // dump($allbbcnews);
+            $allnews[$i] = [
+                'title' => $node->text(),
+                "link" => $node->attr('href')
+            ];
         });
 
-        $eachbbcnews->filter('a.media__tag.tag.tag--news')->each(function ($node, $i) use (&$allbbcnews) {
+        $crawler->filter('div.delayed-image-load')->each(function ($node, $i) use (&$allnews) {
 
-            $allbbcnews[$i]['country'] = ['name' => $node->text(), "link" => $node->attr('href')];
-
-            // dump($node->attr('href'));
-
-            // dump($node->text());
-
+            // if (($i - 1) > 0) {
+            $allnews[$i]['img'] = ['src' => $node->attr('data-src'), 'alt' => $node->attr('data-alt')];
+            // }
         });
 
-        $eachbbcnews->filter('p.media__summary')->each(function ($node, $i) use (&$allbbcnews) {
+        $crawler->filter('p.media__summary')->each(function ($node, $i) use (&$allnews) {
 
-            $allbbcnews[$i]['summary'] = $node->text();
-
-            // dump($node->text());
-
+            $allnews[$i]['summary'] = $node->text();
         });
 
-        $eachbbcnews->filter('img.image-replace')->each(function ($node, $i) use (&$allbbcnews) {
+        $crawler->filter('a.media__tag.tag')->each(function ($node, $i) use (&$allnews) {
 
-            $allbbcnews[$i]['img'] = $node->attr('src');
-
-            // dump($node->attr('src'));
+            $allnews[$i]['tag'] = [
+                'name' => $node->text(),
+                "link" => $node->attr('href')
+            ];
         });
 
-        dump(json_encode($allbbcnews));
+        return [
+            'source' => "BBC",
+            "url" => $url,
+            "urlinfo" => $urlinfo,
+
+            "news" => self::perfectnews($allnews, ['title', 'link', 'img', 'summary', 'tag'])
+        ];
     }
 }
