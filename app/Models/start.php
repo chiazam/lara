@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
 use jcobhams\NewsApi\NewsApi;
+use GuzzleHttp\Client;
 
 class Start
 {
@@ -251,35 +252,57 @@ class Start
         ];
     }
 
+    static function perfectGuardianApinews(string $host, array $news)
+    {
 
+        $allnews = [];
+
+        foreach ($news as $key => $value) {
+
+            array_push($allnews, [
+
+                "title" => $value["webTitle"],
+                "link" => $value["webUrl"],
+                "source" => "Guardian",
+                "source-id" => "guardian",
+                "date" => self::dateformat($value["webPublicationDate"]),
+                "img" => null,
+                "summary" => null,
+                "author" => null,
+                "tag" => [
+                    'name' => $value['sectionName'],
+                    "link" => self::linkabsolute($host, $value['sectionId']),
+                ]
+            ]);
+        }
+
+        return $allnews;
+    }
 
     const GuardianApiKey = 'test';
 
     static function scrapeGuardianApi()
     {
 
-        $newsapi = new NewsApi(self::NewsApiKey);
-
-        $categories = $newsapi->getCategories();
-
-        $sorts = $newsapi->getSortBy();
-
-        $curr_category = self::randfromlist($categories);
-
-        $sources = self::objtoarr($newsapi->getSources($curr_category, null, null))['sources'];
-
-        $sources_str =  join(",", self::listkeyvalue($sources, "id"));
-
         $page_size = 20;
 
         $page = 1;
 
-        $allnews = self::objtoarr($newsapi->getTopHeadlines("", $sources_str, null, null, $page_size, $page))['articles'];
+        $host = "https://content.guardianapis.com/search?page={$page}&page-size={$page_size}&api-key=" . self::GuardianApiKey;
+
+        $urlinfo = self::my_parse_url($host);
+
+        $host2 = "https://www.theguardian.com/";
+
+        $client = new Client();
+
+        $news = $client->request('GET', $host)->getBody()->getContents();
+
+        $allnews = (json_decode($news, true))['response']['results'];
 
         return [
-            "news" => self::perfectNewsApinews($allnews),
-            "sources" => $sources,
-            "categories" => $categories
+            "urlinfo" => $urlinfo,
+            "news" => self::perfectGuardianApinews($host2, $allnews)
         ];
     }
 }
