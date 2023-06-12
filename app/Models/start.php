@@ -49,14 +49,14 @@ class Start
         return ($urlinfo);
     }
 
-    static function checknewsprop(array $eachnews, array $newsprop)
+    static function checkisset(array $list, array $keys)
     {
 
         $bool = true;
 
-        foreach ($newsprop as $key => $value) {
+        foreach ($keys as $k => $value) {
 
-            if (!isset($eachnews[$value])) {
+            if (!isset($list[$value])) {
 
                 $bool = false;
 
@@ -86,7 +86,7 @@ class Start
 
         foreach ($news as $key => $value) {
 
-            if (self::checknewsprop($value, $newsprop) == true) {
+            if (self::checkisset($value, $newsprop) == true) {
 
                 $value['link'] = self::linkabsolute($host, $value['link']);
 
@@ -125,6 +125,7 @@ class Start
                 'title' => $node->text(),
                 "link" => $node->attr('href'),
                 'source' => "BBC",
+                "date" => date("Y-m-d")
             ];
         });
 
@@ -156,13 +157,73 @@ class Start
 
     const NewsApiKey = 'fd19822acf9e478b92af0c9608dffa14';
 
+    static function randfromlist(array $list)
+    {
+
+        return $list[array_rand($list)];
+    }
+
+    static function listkeyvalue(array $list, string $key)
+    {
+        $listout = [];
+
+        foreach ($list as $k => $value) {
+
+            if (self::checkisset($value, [$key])) {
+
+                array_push($listout, $value[$key]);
+            }
+        }
+
+        return $listout;
+    }
+
+    static function objtoarr($data)
+    {
+        if (is_array($data) || is_object($data)) {
+            $result = [];
+            foreach ($data as $key => $value) {
+                $result[$key] = (is_array($value) || is_object($value)) ? self::objtoarr($value) : $value;
+            }
+            return $result;
+        }
+        return $data;
+    }
+
     static function scrapeNewsApi(Request $request)
     {
 
         $newsapi = new NewsApi(self::NewsApiKey);
 
-        dd($request->has('hh'));
+        // $allnews = $newsapi->getEverything($q, $sources, $domains, $exclude_domains, $from, $to, $language, $sort_by,  $page_size, $page);
 
-        // return "" . $request->has('hh');
+        $categories = $newsapi->getCategories();
+
+        $sorts = $newsapi->getSortBy();
+
+        $languages = $newsapi->getLanguages();
+
+        $countries = $newsapi->getCountries();
+
+        $curr_category = self::randfromlist($categories);
+
+        $curr_language = "en";
+
+        $curr_countries = self::randfromlist($countries);
+
+        $sources = self::objtoarr($newsapi->getSources($curr_category, null, null))['sources'];
+
+        // dd($curr_category);
+
+        return [
+            // "news" => $newsapi->getEverything("australia"),
+            // "news" => $newsapi->getTopHeadlines($q, $sources, $country, $category, $page_size, $page),
+            "s" => self::listkeyvalue($sources, "id"),
+            // "sources" => $sources,
+            // "languages" => $languages,
+            // "categories" => $categories,
+            // "sorts" => $sorts,
+            // "countries" => $countries
+        ];
     }
 }
