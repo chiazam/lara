@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Models\Start;
 use Goutte\Client;
+use Illuminate\Http\Request;
 use Symfony\Component\BrowserKit\HttpBrowser;
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,12 @@ Route::get('/', function () {
     return view('i', Start::startinfo());
 });
 
-Route::get('scrapcrawl', function () {
+Route::get('/scrapeBBC', function () {
 
     return Start::scrapeBBC();
+});
+
+Route::get('/NewsApi', function (Request $request) {
+
+    return Start::scrapeNewsApi($request);
 });

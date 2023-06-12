@@ -4,16 +4,16 @@ namespace App\Models;
 
 // use Symfony\Component\BrowserKit\Cookie;
 // use Symfony\Component\BrowserKit\CookieJar;
+
+use Illuminate\Http\Request;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
 use jcobhams\NewsApi\NewsApi;
 
-// $newsapi = new NewsApi($your_api_key);
-
 class Start
 {
 
-    public static function startinfo()
+    static function startinfo()
     {
 
         return ([
@@ -27,7 +27,7 @@ class Start
         ]);
     }
 
-    public static function my_parse_url(string $url)
+    static function my_parse_url(string $url)
     {
 
         $urlinfo = parse_url($url);
@@ -49,7 +49,7 @@ class Start
         return ($urlinfo);
     }
 
-    public static function checknewsprop(array $eachnews, array $newsprop)
+    static function checknewsprop(array $eachnews, array $newsprop)
     {
 
         $bool = true;
@@ -67,17 +67,32 @@ class Start
         return $bool;
     }
 
-    public static function perfectnews(array $news, array $newsprop)
+    static function isurl(string  $link)
+    {
+
+        return filter_var($link, FILTER_VALIDATE_URL);
+    }
+
+    static function linkabsolute(string $host, string $link)
+    {
+
+        return (self::isurl($link) == true) ? ($link) : ($host . $link);
+    }
+
+    static function perfectnews(string $host, array $news, array $newsprop)
     {
 
         $allnews = [];
 
-
-
-
         foreach ($news as $key => $value) {
 
             if (self::checknewsprop($value, $newsprop) == true) {
+
+                $value['link'] = self::linkabsolute($host, $value['link']);
+
+                $value['tag']['link'] = self::linkabsolute($host, $value['tag']['link']);
+
+                $value['img']['src'] = self::linkabsolute($host, $value['img']['src']);
 
                 array_push($allnews, $value);
             }
@@ -86,12 +101,12 @@ class Start
         return $allnews;
     }
 
-    public static function scrapeBBC()
+    static function scrapeBBC()
     {
 
-        $url = 'https://www.bbc.com';
+        $host = 'https://www.bbc.com';
 
-        $urlinfo = self::my_parse_url($url);
+        $urlinfo = self::my_parse_url($host);
 
         $client = HttpClient::create([
             'headers' => [],
@@ -100,7 +115,7 @@ class Start
         ]);
         $browser = new HttpBrowser($client, null);
 
-        $crawler = $browser->request('GET', $url);
+        $crawler = $browser->request('GET', $host);
 
         $allnews = [];
 
@@ -108,7 +123,8 @@ class Start
 
             $allnews[$i] = [
                 'title' => $node->text(),
-                "link" => $node->attr('href')
+                "link" => $node->attr('href'),
+                'source' => "BBC",
             ];
         });
 
@@ -128,16 +144,25 @@ class Start
 
             $allnews[$i]['tag'] = [
                 'name' => $node->text(),
-                "link" => $node->attr('href')
+                "link" => $node->attr('href'),
             ];
         });
 
         return [
-            'source' => "BBC",
-            "url" => $url,
             "urlinfo" => $urlinfo,
-
-            "news" => self::perfectnews($allnews, ['title', 'link', 'img', 'summary', 'tag'])
+            "news" => self::perfectnews($host, $allnews, ['title', 'link', 'img', 'summary', 'tag'])
         ];
+    }
+
+    const NewsApiKey = 'fd19822acf9e478b92af0c9608dffa14';
+
+    static function scrapeNewsApi(Request $request)
+    {
+
+        $newsapi = new NewsApi(self::NewsApiKey);
+
+        dd($request->has('hh'));
+
+        // return "" . $request->has('hh');
     }
 }
