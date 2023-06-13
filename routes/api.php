@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Models\Start;
@@ -31,6 +32,4 @@ Route::get('/scrapeAllApi', function (Request $request) {
 // Route::get('/getNews', function (Request $request) {
 // });
 
-Route::post('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login', [AuthController::class]);
