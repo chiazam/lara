@@ -81,10 +81,10 @@ class Start
         return (self::isurl($link) == true) ? ($link) : ($host . $link);
     }
 
-    static function dateformat(string $date = null)
+    static function dateformat(string $date = null, string $format = "Y-m-d")
     {
 
-        return date("Y-m-d", ($date != null) ? (strtotime($date)) : (strtotime(date("Y-m-d"))));
+        return date($format, ($date != null) ? (strtotime($date)) : (strtotime(date($format))));
     }
 
     static function randfromlist(array $list)
@@ -195,7 +195,7 @@ class Start
 
         if ($save == true) {
 
-            self::BulkSaveNews($thenews);
+            self::BulkSaveToDB('news', $thenews);
         }
 
         return [
@@ -256,7 +256,7 @@ class Start
 
         if ($save == true) {
 
-            self::BulkSaveNews($thenews);
+            self::BulkSaveToDB('news', $thenews);
         }
 
         return [
@@ -317,7 +317,7 @@ class Start
 
         if ($save == true) {
 
-            self::BulkSaveNews($thenews);
+            self::BulkSaveToDB('news', $thenews);
         }
 
         return [
@@ -341,16 +341,42 @@ class Start
         ];
     }
 
-    static function BulkSaveNews(array $bulknews)
+    static function BulkSaveToDB(string $table, array $bulkinfo)
     {
 
-        foreach ($bulknews as $key => $value) {
+        foreach ($bulkinfo as $key => $info) {
 
-            self::SaveNews($value);
+            self::SaveToDB($table, $info);
         }
     }
 
-    static function SaveNews(array $news)
+    static function SaveToDB(string $table, array $info)
     {
+
+        $numrows = self::NumRowsDB($table, $info);
+
+        if ($numrows == 0) {
+
+            $DBTable = DB::table($table);
+
+            $create_date = ["created_at" => self::dateformat(null, "Y-m-d H:i:s")];
+
+            $main = array_merge($info, $create_date);
+
+            $DBTable->insert($main);
+        }
+    }
+
+    static function NumRowsDB(string $table, array $info)
+    {
+
+        $DBTable = DB::table($table);
+
+        foreach ($info as $key => $value) {
+
+            $DBTable->where($key, '=', $value);
+        }
+
+        return $DBTable->count();
     }
 }

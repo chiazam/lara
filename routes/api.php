@@ -19,24 +19,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/scrapeBBC', function () {
+Route::get('/scrapeBBC', function (Request $request) {
 
-    return Start::scrapeBBC();
+    return Start::scrapeBBC(($request->has("save")));
 });
 
-Route::get('/NewsApi', function () {
+Route::get('/NewsApi', function (Request $request) {
 
-    return Start::scrapeNewsApi();
+    return Start::scrapeNewsApi(($request->has("save")));
 });
 
-Route::get('/GuardianApi', function () {
+Route::get('/GuardianApi', function (Request $request) {
 
-    return Start::scrapeGuardianApi();
+    return Start::scrapeGuardianApi(($request->has("save")));
 });
 
-Route::get('/scrapeAllApi', function () {
+Route::get('/scrapeAllApi', function (Request $request) {
 
-    return Start::scrapeAllApi();
+    return Start::scrapeAllApi(($request->has("save")));
 });
 
 Route::get('/getNews', function (Request $request) {
