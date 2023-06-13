@@ -14,7 +14,7 @@ export default function Heady(props) {
 
             <section className="px-2 flex-1 flex justify-center items-center">
 
-                <section className="border p-1 flex bg-gray-100 w-4/6 h-4/6 rounded-md overflow-hidden">
+                <section className="border p-1 flex bg-gray-100 min-w-max w-3/6 h-4/6 rounded-md overflow-hidden">
 
                     <input className="border-r pr-1 bg-transparent px-2 flex-1 flex" />
 
@@ -24,9 +24,9 @@ export default function Heady(props) {
 
             </section>
 
-            <section className="px-2">
+            <section className="px-2 flex justify-center items-center">
 
-                <button className="rounded-md border p-1 justify-center items-center flex">Login</button>
+                <button className="bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex">Signup/Login</button>
 
             </section>
 
