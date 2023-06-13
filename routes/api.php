@@ -29,7 +29,6 @@ Route::get('/scrapeAllApi', function (Request $request) {
     return Start::scrapeAllApi(($request->has("save")));
 });
 
-// Route::get('/getNews', function (Request $request) {
-// });
 
-Route::post('/login', [AuthController::class]);
+
+Route::post('/login', [AuthController::class, "login"]);
