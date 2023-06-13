@@ -24,6 +24,12 @@ export default function Heady(props) {
 
             </section>
 
+            <section className="px-2">
+
+                <button className="border-l pl-1 justify-center items-center flex">Search</button>
+
+            </section>
+
         </header>
 
     </section>);

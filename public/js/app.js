@@ -2138,6 +2138,12 @@ function Heady(props) {
             children: "Search"
           })]
         })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        className: "px-2",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "border-l pl-1 justify-center items-center flex",
+          children: "Search"
+        })
       })]
     })
   }, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
