@@ -32,6 +32,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
 Route::get('/login', [Controller::class, ""]);
 
 Route::get('/scrapeBBC', function (Request $request) {
@@ -55,3 +57,7 @@ Route::get('/scrapeAllApi', function (Request $request) {
 });
 
 Route::post('/register', [AuthController::class, 'sign']);
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/me', [AuthController::class, 'me']);
