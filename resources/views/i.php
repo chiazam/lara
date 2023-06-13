@@ -24,13 +24,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content=""> <!-- iOS Safari -->
     <title><?php echo $company; ?> - <?php echo $topic; ?></title>
     <link rel="stylesheet" href="<?php echo mix('css/app.css'); ?>">
+    <link rel="icon" href="<?php echo asset('img/logo.png'); ?>">
+
 </head>
 
-<body class="heavy text-sm">
+<body class="bg-gray-100 text-sm">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <App id="app">dfghjk</App>
+    <App id="app"></App>
 
     <script src="<?php echo  mix('js/app.js'); ?>"></script>
 
