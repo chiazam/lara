@@ -12,8 +12,24 @@ export default function News(props) {
 
     return (<section key={f.uniqid()}>
 
+        <section classNam="flex items-center p-1 border-b">
 
+            <section>
 
-    </section>);
+                <img className="border rounded-md w-20 h-20" alt={news.imgalt} src={news.imgsrc} />
+
+            </section>
+
+            <section className="flex-1 ml-1">
+
+                <section><h3>{news.title}</h3></section>
+
+                <section>{news.summary}</section>
+
+            </section>
+
+        </section>
+
+    </section >);
 
 }

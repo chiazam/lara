@@ -2196,13 +2196,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
 function News(props) {
   // <img className="border rounded-md w-12 h-12" src={f.imglink("img/logo.png")} />
 
   var news = props.news;
   news.imgsrc = news.source == "BBC" ? news.imgsrc.replace("{width}", "999") : news.imgsrc;
   console.log(news, "newsliner");
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {}, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      classNam: "flex items-center p-1 border-b",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          className: "border rounded-md w-20 h-20",
+          alt: news.imgalt,
+          src: news.imgsrc
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        className: "flex-1 ml-1",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+            children: news.title
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          children: news.summary
+        })]
+      })]
+    })
+  }, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
 }
 
 /***/ }),
