@@ -248,6 +248,39 @@ f.getlinefunc = function (res) {
 
     f.bulkdispline(res.data);
 
+    f.dispnextline((res.data.length > 0));
+
+};
+
+f.dispnextline = function (next) {
+
+    console.log(f.queryline, "each liner");
+
+    f.updatequeryline(f.lineword, f.limit, (f.queryline.offset + f.limit), f.queryline.categories, f.queryline.sources, f.queryline.authors);
+
+    let allnext = f._("#linenext");
+
+    let uniq = f.uniqid();
+
+    allnext.innerHTML = "";
+
+    if (next == true) {
+
+        f.adjhtmlel(allnext, "beforeend", `<section id="${uniq}"></section>`);
+
+        setTimeout(function () {
+
+            f.r(`#${uniq}`, <section onClick={() => {
+
+                f.getline(f.queryline);
+
+            }} key={uniq} className="bg-white p-2"> See More </section>);
+
+        }, 2000);
+
+
+    }
+
 };
 
 f.bulkdispline = function (data) {
@@ -257,7 +290,6 @@ f.bulkdispline = function (data) {
         f.displine(e);
 
     });
-
 
 };
 

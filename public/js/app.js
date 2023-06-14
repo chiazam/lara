@@ -2684,6 +2684,26 @@ f.getline = function (queryline) {
 f.getlinefunc = function (res) {
   console.log(res, "liner");
   f.bulkdispline(res.data);
+  f.dispnextline(res.data.length > 0);
+};
+f.dispnextline = function (next) {
+  console.log(f.queryline, "each liner");
+  f.updatequeryline(f.lineword, f.limit, f.queryline.offset + f.limit, f.queryline.categories, f.queryline.sources, f.queryline.authors);
+  var allnext = f._("#linenext");
+  var uniq = f.uniqid();
+  allnext.innerHTML = "";
+  if (next == true) {
+    f.adjhtmlel(allnext, "beforeend", "<section id=\"".concat(uniq, "\"></section>"));
+    setTimeout(function () {
+      f.r("#".concat(uniq), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+        onClick: function onClick() {
+          f.getline(f.queryline);
+        },
+        className: "bg-white p-2",
+        children: " See More "
+      }, uniq));
+    }, 2000);
+  }
 };
 f.bulkdispline = function (data) {
   f.loop(data, function (e, q, arrays) {
