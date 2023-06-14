@@ -2553,13 +2553,10 @@ f.queryline = {
   authors: ""
 };
 f.randarr = function (arr) {
-  console.log(arr, 121313);
-
-  // const rand = Math.floor(Math.random() * arr.length);
-
-  // return arr[rand];
+  var rand = Math.floor(Math.random() * arr.length);
+  console.log(arr[rand], "rander");
+  return arr[rand];
 };
-
 f.getsort = function (sort, getsortfunc) {
   console.log(sort);
   f.ajax("".concat(f.DOT, "api/sortApi"), getsortfunc, {
@@ -2572,18 +2569,21 @@ f.getsort("tagname", function (res) {
   f.tagline = f.loop(res.data, function (e, q, arrays) {
     return e.tagname;
   });
+  f.updatequeryline();
   console.log(f.tagline, "tagliner");
 });
 f.getsort("source", function (res) {
   f.sourceline = f.loop(res.data, function (e, q, arrays) {
     return e.source;
   });
+  f.updatequeryline();
   console.log(f.sourceline, "sourecliner");
 });
 f.getsort("author", function (res) {
   f.authorline = f.loop(res.data, function (e, q, arrays) {
     return e.author;
   });
+  f.updatequeryline();
   console.log(f.authorline, "autoliner");
 });
 f.updatequeryline = function () {
@@ -2601,6 +2601,7 @@ f.updatequeryline = function () {
   f.queryline.tagname = tagname != false ? tagname : f.randarr(f.tagline);
   f.queryline.sources = sources != false ? sources : f.randarr(f.sourceline);
   f.queryline.authors = authors != false ? authors : f.randarr(f.authorline);
+  console.log(f.queryline);
 };
 f.getline = function (uniq, queryline) {
   console.log(uniq, queryline, "getliner");

@@ -156,11 +156,11 @@ f.queryline = { word: f.lineword, limit: f.limit, offset: f.offset, tagname: "",
 
 f.randarr = function (arr) {
 
-    console.log(arr, 121313);
+    const rand = Math.floor(Math.random() * arr.length);
 
-    // const rand = Math.floor(Math.random() * arr.length);
+    console.log(arr[rand], "rander");
 
-    // return arr[rand];
+    return arr[rand];
 
 };
 
@@ -182,8 +182,9 @@ f.getsort("tagname", function (res) {
 
     });
 
-    console.log(f.tagline, "tagliner");
+    f.updatequeryline();
 
+    console.log(f.tagline, "tagliner");
 
 });
 
@@ -194,6 +195,8 @@ f.getsort("source", function (res) {
         return (e.source);
 
     });
+
+    f.updatequeryline();
 
     console.log(f.sourceline, "sourecliner");
 
@@ -207,6 +210,8 @@ f.getsort("author", function (res) {
 
     });
 
+    f.updatequeryline();
+
     console.log(f.authorline, "autoliner");
 
 });
@@ -218,6 +223,8 @@ f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.off
     f.queryline.tagname = ((tagname != false) ? (tagname) : (f.randarr(f.tagline)));
     f.queryline.sources = ((sources != false) ? (sources) : (f.randarr(f.sourceline)));
     f.queryline.authors = ((authors != false) ? (authors) : (f.randarr(f.authorline)));
+
+    console.log(f.queryline);
 
 }
 
