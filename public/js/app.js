@@ -2612,7 +2612,7 @@ f.ajax = function (url) {
 f.adjhtmlel = function (el, pos, htm) {
   el.insertAdjacentHTML(pos, htm);
 };
-f.lineword = "ukraine";
+f.lineword = "";
 f.offset = 0;
 f.limit = 20;
 f.categoryline = {};
