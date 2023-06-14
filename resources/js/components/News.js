@@ -6,13 +6,13 @@ export default function News(props) {
 
     let news = props.news;
 
-    if (news.source == "BBC") {
+    news.imgsrc = ((news.source == "BBC") ? (news.imgsrc.replace("{width}", "999")) : (news.imgsrc));
 
-    }
+    console.log(news, "newsliner");
 
     return (<section key={f.uniqid()}>
 
-        dfgh
+
 
     </section>);
 

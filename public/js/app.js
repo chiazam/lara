@@ -2200,10 +2200,9 @@ function News(props) {
   // <img className="border rounded-md w-12 h-12" src={f.imglink("img/logo.png")} />
 
   var news = props.news;
-  if (news.source == "BBC") {}
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-    children: "dfgh"
-  }, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
+  news.imgsrc = news.source == "BBC" ? news.imgsrc.replace("{width}", "999") : news.imgsrc;
+  console.log(news, "newsliner");
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {}, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
 }
 
 /***/ }),
