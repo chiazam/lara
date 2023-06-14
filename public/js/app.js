@@ -2164,16 +2164,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Heady__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Heady */ "./resources/js/components/Heady.js");
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/lib */ "./resources/js/lib/lib.js");
-/* harmony import */ var _Signlog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Signlog */ "./resources/js/components/Signlog.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
+/* harmony import */ var _Signlog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Signlog */ "./resources/js/components/Signlog.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 
 
 function Index(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Heady__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Signlog__WEBPACK_IMPORTED_MODULE_2__["default"].loginform, {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Heady__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Timeline__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
   }, _lib_lib__WEBPACK_IMPORTED_MODULE_1__["default"].uniqid());
 }
 
@@ -2367,6 +2369,43 @@ var signlog = {
 
 /***/ }),
 
+/***/ "./resources/js/components/Timeline.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Timeline.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Timeline)
+/* harmony export */ });
+/* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/lib */ "./resources/js/lib/lib.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function Timeline(props) {
+  var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
+  setTimeout(function () {
+    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(uniq, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+  }, 1);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      className: "py-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        id: "linebox".concat(uniq),
+        className: "px-2 max-w-3xl bg-white m-auto"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        id: "linenext".concat(uniq),
+        className: "my-2 px-2 max-w-3x m-auto"
+      })]
+    })
+  }, uniq);
+}
+
+/***/ }),
+
 /***/ "./resources/js/lib/index.js":
 /*!***********************************!*\
   !*** ./resources/js/lib/index.js ***!
@@ -2399,6 +2438,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
 
 var f = {};
 f._all = function (s) {
@@ -2425,6 +2467,111 @@ f.uniqid = function () {
 f.DOT = "".concat(window.location.origin, "/");
 f.imglink = function (pix) {
   return "".concat(f.DOT).concat(pix);
+};
+f.objloop = function (objs, clbak) {
+  var info = [];
+  var i = 0;
+  for (var k in objs) {
+    if (objs.hasOwnProperty(k)) {
+      info.push(clbak(k, objs[k], objs, i));
+      ++i;
+    }
+  }
+  return info;
+};
+f.objtourlquery = function (obj) {
+  var q = "";
+  f.objloop(obj, function (k, v, arrays, n) {
+    if (n > 0) {
+      q += "&";
+    }
+    q += "".concat(k, "=").concat(v);
+  });
+  return q;
+};
+f.ajax = function (url) {
+  var func = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (res) {};
+  var get = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var meth = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "get";
+  var post = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+  var head = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
+  head['Accept'] = "application/json";
+  head['content-type'] = "application/json";
+  axios__WEBPACK_IMPORTED_MODULE_1___default()({
+    url: url + "?" + f.objtourlquery(get),
+    data: post,
+    method: meth,
+    headers: head
+  }).then(function (apiRes) {
+    var res = {
+      data: apiRes.data,
+      status: apiRes.status,
+      statusText: apiRes.statusText,
+      next: true
+    };
+    if (typeof func == 'function') {
+      func(res);
+    }
+  })["catch"](function (err) {
+    if (err.response || err.request) {
+      var res = {
+        next: false
+      };
+      if (err.response) {
+        res.data = err.response.data;
+        res.status = err.response.status;
+        res.statusText = err.response.statusText;
+      } else if (err.request) {
+        res.err_req = err.request;
+      }
+      if (typeof func == 'function') {
+        func(res);
+      }
+    }
+  });
+};
+
+// f.tagline
+// f.sourceline
+// f.authorline
+
+f.randarr = function (arr) {
+  var rand = Math.floor(Math.random() * arr.length);
+  return arr[rand];
+};
+f.offset = 0;
+f.limit = 20;
+f.getsort = function (sort, getsortfunc) {
+  console.log(sort);
+  f.ajax("".concat(f.DOT, "api/sortApi"), getsortfunc, {
+    sort: sort,
+    limit: f.limit,
+    offset: f.limit
+  });
+};
+f.getsort("tagname", function (res) {
+  console.log(res);
+});
+f.getsort("source", function (res) {
+  console.log(res);
+});
+f.getsort("author", function (res) {
+  console.log(res);
+});
+f.queryline = {
+  limit: 20,
+  offset: 0,
+  sources: "",
+  tagname: "",
+  authors: "",
+  word: "Us"
+};
+f.getline = function (uniq, queryline) {
+  console.log(uniq, queryline);
+  f.ajax("".concat(f.DOT, "api/timelineApi"), f.getlinefunc, queryline);
+};
+f.getlinefunc = function (res) {
+  console.log(res);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
@@ -54642,6 +54789,18 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
