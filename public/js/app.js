@@ -2208,7 +2208,7 @@ function News(props) {
       classNam: "flex items-center p-1 border-b",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          className: "border rounded-md w-20 h-20",
+          className: "border rounded-md w-32 h-32",
           alt: news.imgalt,
           src: news.imgsrc
         })
