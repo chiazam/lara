@@ -2387,9 +2387,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function Timeline(props) {
   // f.updatequeryline();
-  // f.getline(uniq, f.queryline);
+  // 
   var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
-  setTimeout(function () {}, 100000);
+  setTimeout(function () {
+    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(uniq, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+  }, 1);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
       className: "py-1",
