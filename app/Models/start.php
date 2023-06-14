@@ -341,6 +341,20 @@ class Start
         ];
     }
 
+    static function timelineApi(Request $request)
+    {
+
+        if ($request->has('userid')) {
+
+            $pref = ($request->has('pref')) ? ($request->pref) : ([]);
+
+            $save = ($request->has('save')) ? ($request->save) : ([]);
+
+            self::UpdateDB("preference", ['userid' => $request->userid], $pref, $save);
+        } else {
+        }
+    }
+
     static function BulkSaveToDB(string $table, array $bulkdata)
     {
 
@@ -415,5 +429,44 @@ class Start
         }
     }
 
-    static function GetDB()
+    static function GetDB(string $table, array $select = [], array $where = [], array $orderby = [], $limit = 1, $offset = 0)
+    {
+
+        $table = DB::table($table);
+
+        foreach ($where as $key => $value) {
+
+            $table->orwhere($value['col'], $value['opr'], $value['val']);
+        }
+
+        if (empty($select)) {
+
+            $table->select('*');
+        } else {
+
+            $selectadd = 0;
+
+            foreach ($select as $key => $value) {
+
+                if ($selectadd == 0) {
+
+                    $table->select($value);
+                } else {
+
+                    $table->addSelect($value);
+                }
+
+                $selectadd += 1;
+            }
+        }
+
+        foreach ($orderby as $key => $value) {
+
+            $dir = ((self::checkisset($value, ['dir']) == true) ? ($value['dir']) : ('ASC'));
+
+            $table->orderby($value['col'], $dir);
+        }
+
+        return $table->offset($offset)->limit($limit)->get();
+    }
 }

@@ -45,6 +45,11 @@ Route::get('/scrapeAllApi', function (Request $request) {
     return Start::scrapeAllApi(($request->has("save")));
 });
 
+Route::get('/timelineApi', function (Request $request) {
+
+    return Start::timelineApi($request);
+});
+
 Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::post('/login', [AuthController::class, 'login']);
