@@ -2120,7 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
 function Heady(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
-      className: "flex shadow-sm border-b top-0 sticky bg-white py-1",
+      className: "flex w-full shadow-sm border-b top-0 fixed bg-white py-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         className: "px-2",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -2205,22 +2205,40 @@ function News(props) {
   console.log(news, "newsliner");
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
-      classNam: "flex items-center p-1 border-b",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+      className: "flex p-1 border-b",
+      children: [news.imgsrc != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          className: "border rounded-md w-32 h-32",
+          className: "object-cover border rounded-md w-36 h-36",
           alt: news.imgalt,
           src: news.imgsrc
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
-        className: "flex-1 ml-1",
+      }) : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        className: "flex-1 ml-2",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+          className: "font-bold text-orange-600 text-lg hover:underline",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+            href: news.link,
             children: news.title
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
           children: news.summary
-        })]
+        }), news.author != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+          className: "font-bold",
+          children: ["Author : ", news.author]
+        }) : "", news.source != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+          className: "font-bold",
+          children: ["Source : ", news.source]
+        }) : "", news.tagname != null && news.taglink != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+          className: "font-bold",
+          children: ["Category : ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+            className: " text-orange-600 hover:underline",
+            href: news.taglink,
+            children: [news.source, ", ", news.tagname]
+          })]
+        }) : "", news.date != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+          className: "font-bold",
+          children: ["Release Date : ", news.date]
+        }) : ""]
       })]
     })
   }, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
@@ -2437,14 +2455,14 @@ function Timeline(props) {
   // 
   var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
   setTimeout(function () {
-    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(uniq, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
-  }, 1);
+    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+  }, 2000);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
       className: "py-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linebox",
-        className: "px-2 max-w-3xl bg-white m-auto"
+        className: "mt-14 px-2 max-w-3xl bg-white m-auto"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linenext",
         className: "my-2 px-2 max-w-3x m-auto"
@@ -2594,17 +2612,17 @@ f.ajax = function (url) {
 f.adjhtmlel = function (el, pos, htm) {
   el.insertAdjacentHTML(pos, htm);
 };
-f.lineword = "US";
+f.lineword = "ukraine";
 f.offset = 0;
 f.limit = 20;
-f.tagline = {};
+f.categoryline = {};
 f.sourceline = {};
 f.authorline = {};
 f.queryline = {
   word: f.lineword,
   limit: f.limit,
   offset: f.offset,
-  tagname: "",
+  categories: "",
   sources: "",
   authors: ""
 };
@@ -2622,11 +2640,11 @@ f.getsort = function (sort, getsortfunc) {
   });
 };
 f.getsort("tagname", function (res) {
-  f.tagline = f.loop(res.data, function (e, q, arrays) {
+  f.categoryline = f.loop(res.data, function (e, q, arrays) {
     return e.tagname;
   });
   f.updatequeryline();
-  console.log(f.tagline, "tagliner");
+  console.log(f.categoryline, "categoryliner");
 });
 f.getsort("source", function (res) {
   f.sourceline = f.loop(res.data, function (e, q, arrays) {
@@ -2646,7 +2664,7 @@ f.updatequeryline = function () {
   var word = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : f.lineword;
   var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : f.limit;
   var offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : f.offset;
-  var tagname = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  var categories = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var sources = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   var authors = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
   f.queryline = {
@@ -2654,7 +2672,7 @@ f.updatequeryline = function () {
     offset: offset,
     word: word
   };
-  f.queryline.tagname = tagname != false ? tagname : f.randarr(f.tagline);
+  f.queryline.categories = categories != false ? categories : f.randarr(f.categoryline);
   f.queryline.sources = sources != false ? sources : f.randarr(f.sourceline);
   f.queryline.authors = authors != false ? authors : f.randarr(f.authorline);
   console.log(f.queryline);

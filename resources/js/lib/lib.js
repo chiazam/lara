@@ -152,13 +152,13 @@ f.adjhtmlel = (el, pos, htm) => {
     el.insertAdjacentHTML(pos, htm);
 };
 
-f.lineword = "US";
+f.lineword = "ukraine";
 f.offset = 0;
 f.limit = 20;
-f.tagline = {};
+f.categoryline = {};
 f.sourceline = {};
 f.authorline = {};
-f.queryline = { word: f.lineword, limit: f.limit, offset: f.offset, tagname: "", sources: "", authors: "" };
+f.queryline = { word: f.lineword, limit: f.limit, offset: f.offset, categories: "", sources: "", authors: "" };
 
 f.randarr = function (arr) {
 
@@ -182,7 +182,7 @@ f.getsort = function (sort, getsortfunc) {
 
 f.getsort("tagname", function (res) {
 
-    f.tagline = f.loop(res.data, function (e, q, arrays) {
+    f.categoryline = f.loop(res.data, function (e, q, arrays) {
 
         return (e.tagname);
 
@@ -190,7 +190,7 @@ f.getsort("tagname", function (res) {
 
     f.updatequeryline();
 
-    console.log(f.tagline, "tagliner");
+    console.log(f.categoryline, "categoryliner");
 
 });
 
@@ -222,11 +222,11 @@ f.getsort("author", function (res) {
 
 });
 
-f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.offset, tagname = false, sources = false, authors = false) {
+f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.offset, categories = false, sources = false, authors = false) {
 
     f.queryline = { limit: limit, offset: offset, word: word };
 
-    f.queryline.tagname = ((tagname != false) ? (tagname) : (f.randarr(f.tagline)));
+    f.queryline.categories = ((categories != false) ? (categories) : (f.randarr(f.categoryline)));
     f.queryline.sources = ((sources != false) ? (sources) : (f.randarr(f.sourceline)));
     f.queryline.authors = ((authors != false) ? (authors) : (f.randarr(f.authorline)));
 

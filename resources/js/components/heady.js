@@ -4,7 +4,7 @@ export default function Heady(props) {
 
     return (<section key={f.uniqid()}>
 
-        <header className="flex shadow-sm border-b top-0 sticky bg-white py-1">
+        <header className="flex w-full shadow-sm border-b top-0 fixed bg-white py-1">
 
             <section className="px-2">
 
