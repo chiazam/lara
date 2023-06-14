@@ -228,9 +228,9 @@ f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.off
 
 }
 
-f.getline = function (uniq, queryline) {
+f.getline = function (queryline) {
 
-    console.log(uniq, queryline, "getliner");
+    console.log(queryline, "getliner");
 
     f.ajax(`${f.DOT}api/timelineApi`, f.getlinefunc, queryline);
 
@@ -240,6 +240,25 @@ f.getlinefunc = function (res) {
 
     console.log(res, "liner");
 
+    f.bulkdispline(res.data);
+
 };
+
+f.bulkdispline = function (data) {
+
+    f.loop(data, function (e, q, arrays) {
+
+        f.displine(e);
+
+    });
+
+
+};
+
+f.displine = function (data) {
+
+    console.log(data, "each liner")
+
+}
 
 export default f;

@@ -2396,10 +2396,10 @@ function Timeline(props) {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
       className: "py-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-        id: "linebox".concat(uniq),
+        id: "linebox",
         className: "px-2 max-w-3xl bg-white m-auto"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-        id: "linenext".concat(uniq),
+        id: "linenext",
         className: "my-2 px-2 max-w-3x m-auto"
       })]
     })
@@ -2605,12 +2605,21 @@ f.updatequeryline = function () {
   f.queryline.authors = authors != false ? authors : f.randarr(f.authorline);
   console.log(f.queryline);
 };
-f.getline = function (uniq, queryline) {
-  console.log(uniq, queryline, "getliner");
+f.getline = function (queryline) {
+  console.log(queryline, "getliner");
   f.ajax("".concat(f.DOT, "api/timelineApi"), f.getlinefunc, queryline);
 };
 f.getlinefunc = function (res) {
   console.log(res, "liner");
+  f.bulkdispline(res.data);
+};
+f.bulkdispline = function (data) {
+  f.loop(data, function (e, q, arrays) {
+    f.displine(e);
+  });
+};
+f.displine = function (data) {
+  console.log(data, "each liner");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
