@@ -346,13 +346,12 @@ class Start
 
         if ($request->has('userid')) {
 
-            $pref = ($request->has('pref')) ? ($request->pref) : ([]);
-
-            $save = ($request->has('save')) ? ($request->save) : ([]);
-
-            self::UpdateDB("preference", ['userid' => $request->userid], $pref, $save);
-        } else {
+            self::UpdateDB("preference", ['userid' => $request->userid], ['categories' => $request->categories, 'authors' = $request->authors, 'sources' => $request->sources], [
+                'userid' => $request->userid, 'categories' => $request->categories, 'sources' => $request->sources, 'authors' = $request->authors
+            ]);
         }
+
+        $checkerpref = ['categories' => $request->categories, 'authors' = $request->authors, 'sources' => $request->sources];
     }
 
     static function BulkSaveToDB(string $table, array $bulkdata)
@@ -429,44 +428,44 @@ class Start
         }
     }
 
-    static function GetDB(string $table, array $select = [], array $where = [], array $orderby = [], $limit = 1, $offset = 0)
-    {
+    // static function GetDB(string $table, array $select = [], array $where = [], array $orderby = [], $limit = 1, $offset = 0)
+    // {
 
-        $table = DB::table($table);
+    //     $table = DB::table($table);
 
-        foreach ($where as $key => $value) {
+    //     foreach ($where as $key => $value) {
 
-            $table->orwhere($value['col'], $value['opr'], $value['val']);
-        }
+    //         $table->orwhere($value['col'], $value['opr'], $value['val']);
+    //     }
 
-        if (empty($select)) {
+    //     if (empty($select)) {
 
-            $table->select('*');
-        } else {
+    //         $table->select('*');
+    //     } else {
 
-            $selectadd = 0;
+    //         $selectadd = 0;
 
-            foreach ($select as $key => $value) {
+    //         foreach ($select as $key => $value) {
 
-                if ($selectadd == 0) {
+    //             if ($selectadd == 0) {
 
-                    $table->select($value);
-                } else {
+    //                 $table->select($value);
+    //             } else {
 
-                    $table->addSelect($value);
-                }
+    //                 $table->addSelect($value);
+    //             }
 
-                $selectadd += 1;
-            }
-        }
+    //             $selectadd += 1;
+    //         }
+    //     }
 
-        foreach ($orderby as $key => $value) {
+    //     foreach ($orderby as $key => $value) {
 
-            $dir = ((self::checkisset($value, ['dir']) == true) ? ($value['dir']) : ('ASC'));
+    //         $dir = ((self::checkisset($value, ['dir']) == true) ? ($value['dir']) : ('ASC'));
 
-            $table->orderby($value['col'], $dir);
-        }
+    //         $table->orderby($value['col'], $dir);
+    //     }
 
-        return $table->offset($offset)->limit($limit)->get();
-    }
+    //     return $table->offset($offset)->limit($limit)->get();
+    // }
 }
