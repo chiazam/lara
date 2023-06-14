@@ -341,36 +341,58 @@ class Start
         ];
     }
 
-    static function timelineApi(Request $request)
+    static function timelineApi(array $request)
     {
 
-        // if ($request->has('userid')) {
+        if (self::checkisset($request, ['word', 'categories', "sources", "authors"])) {
 
-        //     self::UpdateDB("preference", ['userid' => $request->userid], ['categories' => $request->categories, 'authors' => $request->authors, 'sources' => $request->sources], [
-        //         'userid' => $request->userid, 'categories' => $request->categories, 'sources' => $request->sources, 'authors' => $request->authors
-        //     ]);
-        // }
+            if (self::checkisset($request, ['userid'])) {
 
-        return $request;
+                $is_pref = self::NumRowsDB("preference", ['userid' => $request['userid']]);
 
-        // $where = ['tagname' => $request->categories, 'author' => $request->authors, 'source' => $request->sources];
+                if ($is_pref == 0) {
 
-        // $table = DB::table("news");
+                    self::SaveToDB("preference", [
+                        'userid' => $request['userid'],
+                        'categories' => $request['categories'],
+                        'sources' => $request['sources'],
+                        'authors' => $request['authors']
+                    ]);
+                } else {
 
-        // if (!empty($request->word)) {
+                    self::UpdateDB("preference", ['userid' => $request['userid']], [
+                        'categories' => $request['categories'],
+                        'authors' => $request['authors'],
+                        'sources' => $request['sources']
+                    ]);
+                }
+            }
 
-        //     $table->orwhere('summary', "=", $request->word)->orwhere('title', "=", $request->word);
-        // }
+            $where = [
+                'tagname' => $request['categories'],
+                'author' => $request['authors'],
+                'source' => $request['sources']
+            ];
 
-        // foreach ($where as $key => $value) {
+            $table = DB::table("news");
 
-        //     if (!empty($request->$key)) {
+            if (!empty($request['word'])) {
 
-        //         $table->orwhere($key, "=", $value);
-        //     }
-        // }
+                $table->orWhere('summary', 'LIKE', '%' .  $request['word'] . '%')->orWhere('title', 'LIKE', '%' .  $request['word'] . '%');
+            }
 
-        // return $table->offset($request->offset)->limit($request->limit)->get();
+            foreach ($where as $key => $value) {
+
+                if (!empty($request[$key])) {
+
+                    $table->orWhere($key, 'LIKE', '%' . $value . '%');
+                }
+            }
+
+            return $table->offset($request['offset'])->limit($request['limit'])->get();
+        }
+
+        return [];
     }
 
     static function BulkSaveToDB(string $table, array $bulkdata)
@@ -412,20 +434,18 @@ class Start
         return $DBTable->count();
     }
 
-    static function BulkUpdateDB(string $table, array $bulkinfodata, bool $save = false)
+    static function BulkUpdateDB(string $table, array $bulkinfodata)
     {
 
         foreach ($bulkinfodata as $key => $infodata) {
 
-            $savedata = (($save == true && self::checkisset($infodata, ['save']) && is_array($infodata['save'])) ? ($infodata['save']) : (false));
-
-            self::UpdateDB($table, $infodata['info'], $infodata['data'], $savedata);
+            self::UpdateDB($table, $infodata['info'], $infodata['data']);
         }
     }
 
-    static function UpdateDB(string $table, array $info, array $data, array $save = false)
+    static function UpdateDB(string $table, array $info, array $data)
     {
-        $numrows = self::NumRowsDB($table, $data);
+        $numrows = self::NumRowsDB($table, $info);
 
         if ($numrows > 0) {
 
@@ -441,9 +461,6 @@ class Start
             $main = array_merge($data, $updated_at);
 
             return $DBTable->update($main);
-        } else if (is_array($save) && $numrows == 0) {
-
-            self::SaveToDB($table, $save);
         }
     }
 
@@ -454,7 +471,7 @@ class Start
 
     //     foreach ($where as $key => $value) {
 
-    //         $table->orwhere($value['col'], $value['opr'], $value['val']);
+    //         $table->orWhere($value['col'], $value['opr'], $value['val']);
     //     }
 
     //     if (empty($select)) {

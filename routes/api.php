@@ -47,9 +47,30 @@ Route::get('/scrapeAllApi', function (Request $request) {
 
 Route::get('/timelineApi', function (Request $request) {
 
-    return $request;
+    // return $request;
 
-    return Start::timelineApi($request);
+    $requisite = [];
+
+    if ($request->has('userid') && $request->userid != null) {
+
+        $requisite['userid'] = $request->userid;
+    }
+
+    $requisite['limit'] = (($request->has('limit') && $request->limit != null) ? ($request->limit) : (10));
+
+    $requisite['offset'] = (($request->has('offset') && $request->offset != null) ? ($request->offset) : (0));
+
+    $requisite['sources'] = (($request->has('sources') && $request->sources != null) ? ($request->sources) : (''));
+
+    $requisite['categories'] = (($request->has('categories') && $request->categories != null) ? ($request->categories) : (''));
+
+    $requisite['authors'] = (($request->has('authors') && $request->authors != null) ? ($request->authors) : (''));
+
+    $requisite['word'] = (($request->has('word') && $request->word != null) ? ($request->word) : (''));
+
+    // return $requisite;
+
+    return Start::timelineApi(($requisite));
 });
 
 Route::post('/signup', [AuthController::class, 'signup']);
