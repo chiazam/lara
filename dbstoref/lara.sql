@@ -40,16 +40,17 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.migrations: ~5 rows (approximately)
+-- Dumping data for table lara.migrations: ~6 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_resets_table', 1),
 	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
 	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-	(5, '2023_06_12_182258_create_news_table', 1);
+	(5, '2023_06_12_182258_create_news_table', 1),
+	(6, '2023_06_14_015221_create_preference_table', 2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table lara.news
@@ -69,9 +70,9 @@ CREATE TABLE IF NOT EXISTS `news` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=350 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=378 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.news: ~220 rows (approximately)
+-- Dumping data for table lara.news: ~87 rows (approximately)
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 REPLACE INTO `news` (`id`, `title`, `link`, `imgsrc`, `imgalt`, `summary`, `tagname`, `taglink`, `author`, `source`, `sourceid`, `date`, `created_at`, `updated_at`) VALUES
 	(291, 'Defiant Trump flies home after not guilty plea', 'https://www.bbc.com/news/live/world-us-canada-65883731', 'https://ichef.bbc.co.uk/wwhp/{width}/cpsprodpb/12CEE/production/_130083077_gettyimages-1258668011.jpg', 'Former President Donald Trump waves as he makes a visit to the Cuban restaurant Versailles after he appeared for his arraignmen', 'The ex-president did not speak and let his lawyer enter a plea on his behalf, says a BBC reporter in the courtroom.', 'US & Canada', 'https://www.bbc.com/news/world/us_and_canada', NULL, 'BBC', 'bbc', '2023-06-13', '2023-06-13 23:18:48', NULL),
@@ -132,7 +133,35 @@ REPLACE INTO `news` (`id`, `title`, `link`, `imgsrc`, `imgalt`, `summary`, `tagn
 	(346, 'Rescued children pay tribute to sniffer dog still missing in Colombian jungle', 'https://www.theguardian.com/world/2023/jun/13/colombian-children-jungle-dog-wilson-missing', NULL, NULL, NULL, 'World news', 'https://www.theguardian.com/world', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:18:51', NULL),
 	(347, 'Australia to transport last asylum seekers off Nauru within weeks, refugees say', 'https://www.theguardian.com/australia-news/2023/jun/14/australia-to-transport-last-asylum-seekers-off-nauru-within-weeks-refugees-say', NULL, NULL, NULL, 'Australia news', 'https://www.theguardian.com/australia-news', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:18:51', NULL),
 	(348, 'Corrections and clarifications', 'https://www.theguardian.com/news/2023/jun/13/corrections-and-clarifications', NULL, NULL, NULL, 'News', 'https://www.theguardian.com/news', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:18:51', NULL),
-	(349, 'Tales of yore will tell of the plot twists in this Mbappé to Real Madrid saga | Barney Ronay', 'https://www.theguardian.com/football/2023/jun/13/tales-of-yore-will-tell-of-the-plot-twists-in-this-mbappe-to-real-madrid-saga', NULL, NULL, NULL, 'Football', 'https://www.theguardian.com/football', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:18:51', NULL);
+	(349, 'Tales of yore will tell of the plot twists in this Mbappé to Real Madrid saga | Barney Ronay', 'https://www.theguardian.com/football/2023/jun/13/tales-of-yore-will-tell-of-the-plot-twists-in-this-mbappe-to-real-madrid-saga', NULL, NULL, NULL, 'Football', 'https://www.theguardian.com/football', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:18:51', NULL),
+	(350, 'Trump supporters: \'They\'re afraid of him\'', 'https://www.bbc.com/news/world-us-canada-65898826', 'https://ichef.bbc.co.uk/wwhp/{width}/cpsprodpb/4540/production/_130082771_p0ftzyr2.jpg', 'Trump supporters', 'The Pulitzer Prize-winning author has died of natural causes aged 89, his publisher says.', 'US & Canada', 'https://www.bbc.com/news/world/us_and_canada', NULL, 'BBC', 'bbc', '2023-06-13', '2023-06-13 23:34:49', NULL),
+	(351, 'The ultimate inside view of The Beatles', 'https://www.bbc.com/culture/article/20230613-the-ultimate-insider-view-of-the-beatles-and-beatlemania', 'https://ychef.files.bbci.co.uk/width/790/p0ftyq09.jpg', 'As a \'final Beatles record\' is announced, unseen photos from 1964 are revealed', 'The studio reshuffled release dates for eagerly awaited blockbusters, including the Star Wars...', 'Culture', 'http://www.bbc.com/culture', NULL, 'BBC', 'bbc', '2023-06-13', '2023-06-13 23:34:49', NULL),
+	(352, 'Unleash your potential: The best running shoes for men', 'https://www.cbsnews.com/essentials/unleash-your-potential-the-best-running-shoes-for-men/', 'https://assets1.cbsnewsstatic.com/hub/i/r/2023/06/07/38740033-1ecb-4a0d-a2f6-d06f7634ade9/thumbnail/1200x630/1bfbe14f2825f935792142dfb40c0669/runningshoesmen-heroimg.jpg', NULL, 'Shop the best running shoes for men from brands like Nike, Adidas, New Balance, and more.', NULL, NULL, 'Tom Horton, Carolin Lehmann', 'CBS News', 'cbs-news', '2023-06-13', '2023-06-13 23:34:50', NULL),
+	(353, 'Lo que todos quieren saber: ¿llegó María Laura Paz Posse al Concejo Deliberante?', 'https://www.lagaceta.com.ar/nota/994920/politica/lo-todos-quieren-saber-llego-maria-laura-paz-posse-al-concejo-deliberante.html', 'https://img.lagaceta.com.ar/fotos/notas/2023/06/12/lo-todos-quieren-saber-llego-maria-laura-paz-posse-al-concejo-deliberante-994920-201946.jpg', NULL, 'La candidata se había hecho viral en las redes sociales por su spot de campaña.', NULL, NULL, 'La Gaceta', 'La Gaceta', 'la-gaceta', '2023-06-12', '2023-06-13 23:34:50', NULL),
+	(354, 'Дизайнеры больше не в чести: как изменилась продуктовая стратегия Apple :: РБК Pro', 'https://pro.rbc.ru/demo/648322479a7947019f1d391a?from=from_main_5&amp;utm_source=rbc.ru&amp;utm_medium=inhouse_media&amp;utm_campaign=lines_1&amp;utm_content=648322479a7947019f1d391a&amp;utm_term=10.4C_noauth', 'https://s0.rbk.ru/v6_top_pics/media/img/6/81/346865456271816.jpeg', NULL, 'Apple представила Vision Pro — свою первую гарнитуру смешанной реальности. Несмотря на положительные отзывы, устройство не произвело тот же эффект, как в свое время iPhone и iPod. Винить в этом стоит перемены в рабочих процессах компании - РБК Pro', NULL, NULL, 'RBC', 'RBC', 'rbc', '2023-06-12', '2023-06-13 23:34:50', NULL),
+	(355, 'EN VIVO: River vuelve a doblegar a Banfield y le gana 3 a 1', 'https://www.lagaceta.com.ar/nota/994907/deportes/en-vivo-river-vuelve-doblegar-banfield-le-gana-3-1.html', 'https://img.lagaceta.com.ar/fotos/notas/2023/06/12/en-vivo-river-vence-banfield-desde-arranque-partido-994907-194127.jpg', NULL, 'Beltrán vuelve a marcar para el millonario.', NULL, NULL, 'La Gaceta', 'La Gaceta', 'la-gaceta', '2023-06-12', '2023-06-13 23:34:50', NULL),
+	(356, '"Black Panther" actor Tenoch Huerta denies sexual assault allegations', 'https://www.cbsnews.com/news/black-panther-tenoch-huerta-denies-sexual-assault-allegations-maria-elena-rios/', 'https://assets1.cbsnewsstatic.com/hub/i/r/2023/06/12/66543cdd-3e7f-401a-8032-5a986b6b0148/thumbnail/1200x630/13758ea051ef22bb6a5a27a7db3567b9/ap22308588045841.jpg', NULL, 'The actor posted a statement in both Spanish and English to his Instagram stories on Monday calling the allegations "false and completely unsubstantiated."', NULL, NULL, 'Gina Martinez', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:50', NULL),
+	(357, 'How autonomous vehicles could fuel a change in ridesharing', 'https://www.cbsnews.com/video/how-autonomous-vehicles-could-fuel-a-change-in-ridesharing/', 'https://assets2.cbsnewsstatic.com/hub/i/r/2023/06/12/2b0bd605-fbdc-42b7-94d4-fcca675a4a0e/thumbnail/1200x630/39880c685f861c9a534e8f9098bf7001/0612-en-kvc-2044318-640x360.jpg', NULL, 'Waymo, a software company owned by Google parent Alphabet Inc., has been testing out self-driving rideshare cars in Phoenix and San Francisco. The results have been promising so far, but many Americans are still wary of driverless vehicles and the tech may no…', NULL, NULL, 'CBS News', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(358, '\'Wheel of Fortune\' host Pat Sajak announces he will retire next year', 'https://www.nbcnews.com/pop-culture/celebrity/pat-sajak-wheel-of-fortune-retire-rcna88977', 'https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2023-06/230612-Pat-Sajak-2020-ac-725p-7e2170.jpg', NULL, 'It\'s time for somebody else to take a spin.', NULL, NULL, 'Daniel Arkin', 'NBC News', 'nbc-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(359, 'Woman declared dead knocks on coffin during her own wake in Ecuador: "It gave us all a fright"', 'https://www.cbsnews.com/news/woman-declared-dead-knocks-on-coffin-wake-ecuador/', 'https://assets3.cbsnewsstatic.com/hub/i/r/2016/10/09/c6dba69a-1e67-4ae3-aab7-8d97472b2861/thumbnail/1200x630/a6b5373a945793610632522a5f5fb2bf/gettyimages-183158395.jpg', NULL, 'Media reported the unusual incident, with headlines celebrating the woman\'s "resurrection," but doctors said her condition remains dire.', NULL, NULL, NULL, 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(360, 'Oversight Committee subpoenas former Hunter Biden business partner', 'https://www.cbsnews.com/news/oversight-committee-subpoenas-former-hunter-biden-business-partner/', 'https://assets1.cbsnewsstatic.com/hub/i/r/2023/05/25/5bf65260-91fd-4dbe-9975-6fc64800af5f/thumbnail/1200x630/491fd142b3e9ce8df9bb44af5e35b542/cbsn-fusion-doj-slow-walked-tax-probe-said-to-involve-hunter-biden-irs-whistleblower-says-thumbnail-1996300-640x360.jpg', NULL, 'The Oversight Committee has been investigating the business dealings of several members of President Joe Biden\'s family.', NULL, NULL, 'Catherine Herridge, Graham Kates', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(361, 'Human remains found in wreckage of I-95 collapse', 'https://www.cbsnews.com/video/human-remains-found-in-wreckage-of-i-95-collapse/', 'https://assets1.cbsnewsstatic.com/hub/i/r/2023/06/12/47485b6a-e5c7-4355-aea7-d63199761353/thumbnail/1200x630/d273439e8f5ae90e0302f6604f57c7d7/0612-en-quijano-2044275-640x360.jpg', NULL, 'Human remains were found in the wreckage underneath a collapsed portion of I-95, which came down Sunday after a tanker truck caught fire beneath it. Pennsylvania Gov. Josh Shapiro said the repairs could take months. Elaine Quijano has the latest.', NULL, NULL, 'CBS News', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(362, 'Ukraine claims it has retaken several villages in counteroffensive', 'https://www.cbsnews.com/video/ukraine-claims-it-has-retaken-several-villages-in-counteroffensive/', 'https://assets3.cbsnewsstatic.com/hub/i/r/2023/06/12/79cb6b87-bc0b-4e1e-a268-b83ba73a402e/thumbnail/1200x630/4e1bf45105236fd3a00e852ca03467b4/0612-en-lee-2044290-640x360.jpg', NULL, 'Ukraine has launched a counteroffensive in its ongoing fight against Russia\'s invasion. While Ukraine says it has retaken several small villages, both sides are taking heavy losses as the war goes on. Ian Lee reports.', NULL, NULL, 'CBS News', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(363, 'Pat Sajak leaving \'Wheel of Fortune\'', 'https://www.foxnews.com/entertainment/pat-sajak-leaving-wheel-fortune', 'https://static.foxnews.com/foxnews.com/content/uploads/2023/06/pat-sajak-wheel-of-fortune.jpg', NULL, 'Pat Sajak will end his reign as the "Wheel of Fortune" host following the 2023-24 season. Sajak hosted the popular game show for 40 years.', NULL, NULL, 'Tracy Wright, Larry Fink', 'Fox News', 'fox-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(364, '1 killed after tour boat capsizes in underground cavern', 'https://www.cbsnews.com/video/1-killed-after-tour-boat-capsizes-in-underground-cavern/', 'https://assets1.cbsnewsstatic.com/hub/i/r/2023/06/12/cd1d90fa-b91b-4bb5-9add-832e647e4732/thumbnail/1200x630/61d0b6d0d329b63dda539a1f085754bb/0612-en-lynch-2044279-640x360.jpg', NULL, 'One person was killed and several others injured when a tour boat capsized in an underground cavern near Buffalo, New York. None of the 29 passengers were wearing life vests when they were tossed into the water, which is up to six feet deep. CBS affiliate WIV…', NULL, NULL, 'CBS News', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(365, 'Classified documents contained top secret defense information', 'https://www.cbsnews.com/video/classified-documents-contained-top-secret-defense-information/', 'https://assets3.cbsnewsstatic.com/hub/i/r/2023/06/12/b343dc34-0a8e-4eb1-b82b-fe0d324a8607/thumbnail/1200x630/e706834a279dc0b7951b75e969b47a02/0612-en-herridge-2044262-640x360.jpg', NULL, 'Some of the documents at the heart of the Trump indictments contained top secret information about national defense. Catherine Herridge takes a closer look at what they may have contained and the risks posed by keeping them unsecured.', NULL, NULL, 'CBS News', 'CBS News', 'cbs-news', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(366, 'Relatives fight for custody of 4 kids who survived plane crash and weeks in Amazon jungle', 'https://apnews.com/1251e59edddc4c992c24221aed289979', 'https://storage.googleapis.com/afs-prod/media/a37a5abdbc134263b1e834810f0d74b4/3000.jpeg', NULL, 'BOGOTA, Colombia (AP) — A custody battle has broken out among relatives of four Indigenous children who survived a plane crash and 40 harrowing days alone in the Amazon rainforest in an extraordinary showing of youthful resilience that captivated people aroun…', NULL, NULL, 'REGINA GARCIA CANO and MANUEL RUEDA', 'Associated Press', 'associated-press', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(367, 'Paro de colectivos mañana: tras la reunión la UTA define si hay servicio en Buenos Aires - Página/12', 'https://news.google.com/rss/articles/CBMiX2h0dHBzOi8vd3d3LnBhZ2luYTEyLmNvbS5hci81NTc1NTMtcGFyby1kZS1jb2xlY3Rpdm9zLWVuLXVuYS1udWV2YS1hdWRpZW5jaWEtc2UtZGVmaW5lLXNpLWVzdGUt0gFfaHR0cHM6Ly93d3cucGFnaW5hMTIuY29tLmFyLzU1NzU1My1wYXJvLWRlLWNvbGVjdGl2b3MtZW4tdW5hLW51ZXZhLWF1ZGllbmNpYS1zZS1kZWZpbmUtc2ktZXN0ZS0?oc=5', NULL, NULL, NULL, NULL, NULL, 'Página/12', 'Google News (Argentina)', 'google-news-ar', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(368, 'Elon Musk Celebrates Pride Month By Going On An Anti-Trans Tweeting Spree', 'https://www.huffpost.com/entry/twitter-elon-musk-transgender_n_648798ace4b048eb9110e898', 'https://img.huffingtonpost.com/asset/64879d8825000019006e1324.jpg?cache=wkLSNj7tE6&ops=1200_630', NULL, 'Critics say the platform isn’t safe for trans users after the company rolled back protections against “targeted misgendering."', NULL, NULL, 'Lil Kalish', 'The Huffington Post', 'the-huffington-post', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(369, 'Matt Damon e Ben Affleck contro Trump per uso \'Air\' in un video - Ultima Ora', 'http://www.ansa.it/sito/notizie/topnews/2023/06/13/matt-damon-e-ben-affleck-contro-trump-per-uso-air-in-un-video_4dd524d2-1f15-4056-a7a0-4e3001a5ed8a.html', 'https://www.ansa.it/webimages/img_700/2022/11/29/7bf8bbfb6488197ca558ad2df02612b9.jpg', NULL, 'Gli studios fondati da Matt Damon e Ben Affleck denunciano Donald Trump per l\'uso di un audio tratto dal film \'Air\' in uno dei video di campagna elettorale. (ANSA)', NULL, NULL, 'ANSA.it', 'ANSA.it', 'ansa', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(370, 'Nueve de cada 10 personas tienen prejuicios contra las mujeres, revela informe de la ONU', 'https://cnnespanol.cnn.com/2023/06/12/prejuicios-mujeres-informe-onu-trax/', 'https://cnnespanol.cnn.com/wp-content/uploads/2023/06/desigualdad-mujeres.jpg?quality=100&strip=info', NULL, 'Casi nueve de cada 10 personas mantienen "prejuicios fundamentales" contra las mujeres, según un nuevo informe de la ONU, que denuncia una "década de estancamiento". Se espera que la igualdad de género se alcance en 300 años.', NULL, NULL, 'Carolina Calero', 'CNN Spanish', 'cnn-es', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(371, 'NSW announce mass team changes', 'https://www.news.com.au/sport/nrl/nsw-team-for-state-of-origin-game-2-revealed-with-five-massive-changes/news-story/15d5476d969056be02fcd5cacc4f2201', 'https://content.api.news/v3/images/bin/2eb5c8ddeebc8ea8a999cf3324f8676f', NULL, '<p>Phil Gould says Nicho Hynes is not ready to handle the No. 7 NSW jumper. </p>', NULL, NULL, NULL, 'News.com.au', 'news-com-au', '2023-06-12', '2023-06-13 23:34:51', NULL),
+	(372, 'Most Australians recognise ABC and SBS as important to society', 'https://www.theguardian.com/media/2023/jun/14/most-australians-recognise-abc-and-sbs-as-important-to-society', NULL, NULL, NULL, 'Media', 'https://www.theguardian.com/media', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:34:52', NULL),
+	(373, 'Cryptic crossword No 29,096', 'https://www.theguardian.com/crosswords/cryptic/29096', NULL, NULL, NULL, 'Crosswords', 'https://www.theguardian.com/crosswords', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:34:52', NULL),
+	(374, 'Missing Australian found dead in Canadian wilderness after ‘unfortunate hiking accident’', 'https://www.theguardian.com/world/2023/jun/14/missing-australian-found-dead-in-canadian-wilderness-after-unfortunate-hiking-accident', NULL, NULL, NULL, 'World news', 'https://www.theguardian.com/world', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:34:52', NULL),
+	(375, 'Australian federal police abandon two alleged murder investigations into Ben Roberts-Smith', 'https://www.theguardian.com/australia-news/2023/jun/14/australian-federal-police-abandon-two-alleged-investigations-into-ben-roberts-smith', NULL, NULL, NULL, 'Australia news', 'https://www.theguardian.com/australia-news', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:34:52', NULL),
+	(376, 'Keeping cameras out of court denied the public the sight of Trump at bay', 'https://www.theguardian.com/us-news/2023/jun/13/donald-trump-hearing-court-cameras-judge-arraignment', NULL, NULL, NULL, 'US news', 'https://www.theguardian.com/us-news', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:34:53', NULL),
+	(377, 'Māori ancestral remains and mummified heads returned to New Zealand from Germany', 'https://www.theguardian.com/world/2023/jun/14/maori-ancestral-remains-and-mummified-heads-returned-to-new-zealand-from-germany', NULL, NULL, NULL, 'World news', 'https://www.theguardian.com/world', NULL, 'Guardian', 'guardian', '2023-06-13', '2023-06-13 23:34:53', NULL);
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 
 -- Dumping structure for table lara.password_resets
@@ -161,11 +190,27 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table lara.personal_access_tokens: ~0 rows (approximately)
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+
+-- Dumping structure for table lara.preference
+CREATE TABLE IF NOT EXISTS `preference` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `userid` longtext COLLATE utf8mb4_unicode_ci,
+  `sources` longtext COLLATE utf8mb4_unicode_ci,
+  `categories` longtext COLLATE utf8mb4_unicode_ci,
+  `authors` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table lara.preference: ~0 rows (approximately)
+/*!40000 ALTER TABLE `preference` DISABLE KEYS */;
+/*!40000 ALTER TABLE `preference` ENABLE KEYS */;
 
 -- Dumping structure for table lara.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -179,10 +224,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.users: ~0 rows (approximately)
+-- Dumping data for table lara.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+REPLACE INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+	(1, 'john doe', 'johndoe@gmail.com', NULL, '$2y$10$rV4Gr7KCaf.GysKeMtCpeuj4a2BMFtEb1/E2/2BoeF3HQQ2fX5KIi', NULL, '2023-06-14 00:31:33', '2023-06-14 00:31:33');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
