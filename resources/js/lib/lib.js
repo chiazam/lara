@@ -34,6 +34,22 @@ f.DOT = `${window.location.origin}/`;
 
 f.imglink = (pix) => (`${f.DOT}${pix}`);
 
+f.loop = (arrays, clbak) => {
+
+    let info = [];
+
+    for (let q = 0; q < arrays.length; q++) {
+
+        const e = arrays[q];
+
+        info.push(clbak(e, q, arrays));
+
+    }
+
+    return info;
+
+};
+
 f.objloop = (objs, clbak) => {
 
     let info = [];
@@ -130,55 +146,84 @@ f.ajax = function (url, func = (function (res) { }), get = {}, meth = "get", pos
 
 }
 
-// f.tagline
-// f.sourceline
-// f.authorline
+f.lineword = "US";
+f.offset = 0;
+f.limit = 20;
+f.tagline = {};
+f.sourceline = {};
+f.authorline = {};
+f.queryline = { word: f.lineword, limit: f.limit, offset: f.offset, tagname: "", sources: "", authors: "" };
 
 f.randarr = function (arr) {
 
-    const rand = Math.floor(Math.random() * arr.length);
+    console.log(arr, 121313);
 
-    return arr[rand];
+    // const rand = Math.floor(Math.random() * arr.length);
+
+    // return arr[rand];
 
 };
-
-f.offset = 0;
-
-f.limit = 20;
 
 f.getsort = function (sort, getsortfunc) {
 
     console.log(sort);
 
     f.ajax(`${f.DOT}api/sortApi`, getsortfunc, {
-        sort: sort, limit: f.limit, offset: f.limit
+        sort: sort, limit: f.limit, offset: f.offset
     });
 
 };
 
 f.getsort("tagname", function (res) {
 
-    console.log(res);
+    f.tagline = f.loop(res.data, function (e, q, arrays) {
+
+        return (e.tagname);
+
+    });
+
+    console.log(f.tagline, "tagliner");
+
 
 });
 
 f.getsort("source", function (res) {
 
-    console.log(res);
+    f.sourceline = f.loop(res.data, function (e, q, arrays) {
+
+        return (e.source);
+
+    });
+
+    console.log(f.sourceline, "sourecliner");
 
 });
 
 f.getsort("author", function (res) {
 
-    console.log(res);
+    f.authorline = f.loop(res.data, function (e, q, arrays) {
+
+        return (e.author);
+
+    });
+
+    console.log(f.authorline, "autoliner");
 
 });
 
-f.queryline = { limit: 20, offset: 0, sources: "", tagname: "", authors: "", word: "Us" };
+f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.offset, tagname = false, sources = false, authors = false) {
+
+    f.queryline = { limit: limit, offset: offset, word: word };
+
+    f.queryline.tagname = ((tagname != false) ? (tagname) : (f.randarr(f.tagline)));
+    f.queryline.sources = ((sources != false) ? (sources) : (f.randarr(f.sourceline)));
+    f.queryline.authors = ((authors != false) ? (authors) : (f.randarr(f.authorline)));
+
+}
 
 f.getline = function (uniq, queryline) {
 
-    console.log(uniq, queryline);
+    console.log(uniq, queryline, "getliner");
 
     f.ajax(`${f.DOT}api/timelineApi`, f.getlinefunc, queryline);
 
@@ -186,7 +231,7 @@ f.getline = function (uniq, queryline) {
 
 f.getlinefunc = function (res) {
 
-    console.log(res);
+    console.log(res, "liner");
 
 };
 

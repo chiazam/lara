@@ -2386,10 +2386,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Timeline(props) {
+  // f.updatequeryline();
+  // f.getline(uniq, f.queryline);
   var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
-  setTimeout(function () {
-    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(uniq, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
-  }, 1);
+  setTimeout(function () {}, 100000);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
       className: "py-1",
@@ -2468,6 +2468,14 @@ f.DOT = "".concat(window.location.origin, "/");
 f.imglink = function (pix) {
   return "".concat(f.DOT).concat(pix);
 };
+f.loop = function (arrays, clbak) {
+  var info = [];
+  for (var q = 0; q < arrays.length; q++) {
+    var e = arrays[q];
+    info.push(clbak(e, q, arrays));
+  }
+  return info;
+};
 f.objloop = function (objs, clbak) {
   var info = [];
   var i = 0;
@@ -2530,48 +2538,76 @@ f.ajax = function (url) {
     }
   });
 };
-
-// f.tagline
-// f.sourceline
-// f.authorline
-
-f.randarr = function (arr) {
-  var rand = Math.floor(Math.random() * arr.length);
-  return arr[rand];
-};
+f.lineword = "US";
 f.offset = 0;
 f.limit = 20;
+f.tagline = {};
+f.sourceline = {};
+f.authorline = {};
+f.queryline = {
+  word: f.lineword,
+  limit: f.limit,
+  offset: f.offset,
+  tagname: "",
+  sources: "",
+  authors: ""
+};
+f.randarr = function (arr) {
+  console.log(arr, 121313);
+
+  // const rand = Math.floor(Math.random() * arr.length);
+
+  // return arr[rand];
+};
+
 f.getsort = function (sort, getsortfunc) {
   console.log(sort);
   f.ajax("".concat(f.DOT, "api/sortApi"), getsortfunc, {
     sort: sort,
     limit: f.limit,
-    offset: f.limit
+    offset: f.offset
   });
 };
 f.getsort("tagname", function (res) {
-  console.log(res);
+  f.tagline = f.loop(res.data, function (e, q, arrays) {
+    return e.tagname;
+  });
+  console.log(f.tagline, "tagliner");
 });
 f.getsort("source", function (res) {
-  console.log(res);
+  f.sourceline = f.loop(res.data, function (e, q, arrays) {
+    return e.source;
+  });
+  console.log(f.sourceline, "sourecliner");
 });
 f.getsort("author", function (res) {
-  console.log(res);
+  f.authorline = f.loop(res.data, function (e, q, arrays) {
+    return e.author;
+  });
+  console.log(f.authorline, "autoliner");
 });
-f.queryline = {
-  limit: 20,
-  offset: 0,
-  sources: "",
-  tagname: "",
-  authors: "",
-  word: "Us"
+f.updatequeryline = function () {
+  var word = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : f.lineword;
+  var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : f.limit;
+  var offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : f.offset;
+  var tagname = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  var sources = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+  var authors = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+  f.queryline = {
+    limit: limit,
+    offset: offset,
+    word: word
+  };
+  f.queryline.tagname = tagname != false ? tagname : f.randarr(f.tagline);
+  f.queryline.sources = sources != false ? sources : f.randarr(f.sourceline);
+  f.queryline.authors = authors != false ? authors : f.randarr(f.authorline);
 };
 f.getline = function (uniq, queryline) {
-  console.log(uniq, queryline);
+  console.log(uniq, queryline, "getliner");
   f.ajax("".concat(f.DOT, "api/timelineApi"), f.getlinefunc, queryline);
 };
 f.getlinefunc = function (res) {
-  console.log(res);
+  console.log(res, "liner");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 

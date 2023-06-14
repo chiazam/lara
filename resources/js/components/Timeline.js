@@ -2,12 +2,14 @@ import f from "../lib/lib";
 
 export default function Timeline(props) {
 
+    // f.updatequeryline();
+    // f.getline(uniq, f.queryline);
     let uniq = f.uniqid();
 
     setTimeout(function () {
 
-        f.getline(uniq, f.queryline);
-    }, 1);
+
+    }, 100000);
 
     return (<section key={uniq}>
 
