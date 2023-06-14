@@ -73,6 +73,28 @@ Route::get('/timelineApi', function (Request $request) {
     return Start::timelineApi(($requisite));
 });
 
+Route::get('/sortApi', function (Request $request) {
+
+    // return $request;
+
+    $requisite = [];
+
+    if ($request->has('userid') && $request->userid != null) {
+
+        $requisite['userid'] = $request->userid;
+    }
+
+    $requisite['limit'] = (($request->has('limit') && $request->limit != null) ? ($request->limit) : (10));
+
+    $requisite['offset'] = (($request->has('offset') && $request->offset != null) ? ($request->offset) : (0));
+
+    $requisite['sort'] = (($request->has('sort') && $request->sort != null) ? ($request->sort) : ('source'));
+
+    // return $requisite;
+
+    return Start::sortApi(($requisite));
+});
+
 Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::post('/login', [AuthController::class, 'login']);

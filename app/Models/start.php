@@ -395,6 +395,16 @@ class Start
         return [];
     }
 
+    static function sortApi(array $request)
+    {
+
+        $table = DB::table("news");
+
+        return $table->select($request['sort'])->offset($request['offset'])->limit($request['limit'])->distinct()->get();
+
+        $table = DB::table("news");
+    }
+
     static function BulkSaveToDB(string $table, array $bulkdata)
     {
 
