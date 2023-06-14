@@ -344,31 +344,33 @@ class Start
     static function timelineApi(Request $request)
     {
 
-        if ($request->has('userid')) {
+        // if ($request->has('userid')) {
 
-            self::UpdateDB("preference", ['userid' => $request->userid], ['categories' => $request->categories, 'authors' = $request->authors, 'sources' => $request->sources], [
-                'userid' => $request->userid, 'categories' => $request->categories, 'sources' => $request->sources, 'authors' = $request->authors
-            ]);
-        }
+        //     self::UpdateDB("preference", ['userid' => $request->userid], ['categories' => $request->categories, 'authors' => $request->authors, 'sources' => $request->sources], [
+        //         'userid' => $request->userid, 'categories' => $request->categories, 'sources' => $request->sources, 'authors' => $request->authors
+        //     ]);
+        // }
 
-        $where = ['tagname' => $request->categories, 'author' = $request->authors, 'source' => $request->sources];
+        return $request;
 
-        $table = DB::table("news");
+        // $where = ['tagname' => $request->categories, 'author' => $request->authors, 'source' => $request->sources];
 
-        if (!empty($request->word)) {
+        // $table = DB::table("news");
 
-            $table->orwhere('summary', "=", $request->word)->orwhere('title', "=", $request->word);
-        }
+        // if (!empty($request->word)) {
 
-        foreach ($where as $key => $value) {
+        //     $table->orwhere('summary', "=", $request->word)->orwhere('title', "=", $request->word);
+        // }
 
-            if (!empty($request->$key)) {
+        // foreach ($where as $key => $value) {
 
-                $table->orwhere($key, "=", $value);
-            }
-        }
+        //     if (!empty($request->$key)) {
 
-        return $table->offset($request->offset)->limit($request->limit)->get();
+        //         $table->orwhere($key, "=", $value);
+        //     }
+        // }
+
+        // return $table->offset($request->offset)->limit($request->limit)->get();
     }
 
     static function BulkSaveToDB(string $table, array $bulkdata)

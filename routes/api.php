@@ -47,6 +47,8 @@ Route::get('/scrapeAllApi', function (Request $request) {
 
 Route::get('/timelineApi', function (Request $request) {
 
+    return $request;
+
     return Start::timelineApi($request);
 });
 
