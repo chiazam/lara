@@ -4,9 +4,11 @@
 
 // namespace App\Http\Controllers\Auth;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\Controller;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\AuthController;
 use \App\Models\Start;
 /*
 |--------------------------------------------------------------------------
@@ -19,22 +21,9 @@ use \App\Models\Start;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
-
-
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
-
-Route::get('/login', [Controller::class, ""]);
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/scrapeBBC', function (Request $request) {
 
@@ -56,8 +45,10 @@ Route::get('/scrapeAllApi', function (Request $request) {
     return Start::scrapeAllApi(($request->has("save")));
 });
 
-Route::post('/register', [AuthController::class, 'sign']);
+Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/me', [AuthController::class, 'me']);
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+Route::post('/logout', [AuthController::class, 'logout']);
