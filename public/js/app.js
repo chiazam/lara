@@ -2181,6 +2181,33 @@ function Index(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/News.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/News.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ News)
+/* harmony export */ });
+/* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/lib */ "./resources/js/lib/lib.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function News(props) {
+  // <img className="border rounded-md w-12 h-12" src={f.imglink("img/logo.png")} />
+
+  var news = props.news;
+  if (news.source == "BBC") {}
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+    children: "dfgh"
+  }, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Signlog.js":
 /*!********************************************!*\
   !*** ./resources/js/components/Signlog.js ***!
@@ -2442,6 +2469,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_News__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/News */ "./resources/js/components/News.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 var f = {};
@@ -2627,7 +2658,9 @@ f.displine = function (data) {
   var uniq = f.uniqid();
   f.adjhtmlel(allbox, "beforeend", "<section id=\"".concat(uniq, "\"></section>"));
   f.box = f._("#".concat(uniq));
-  f.r("#".concat(uniq), "sdfgh");
+  f.r("#".concat(uniq), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_News__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    news: data
+  }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 

@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
+import News from '../components/News';
 
 let f = {};
 
@@ -272,7 +273,7 @@ f.displine = function (data) {
 
     f.box = f._(`#${uniq}`);
 
-    f.r(`#${uniq}`, "sdfgh");
+    f.r(`#${uniq}`, <News news={data} />);
 
 }
 
