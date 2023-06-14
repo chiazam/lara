@@ -2540,6 +2540,9 @@ f.ajax = function (url) {
     }
   });
 };
+f.adjhtmlel = function (el, pos, htm) {
+  el.insertAdjacentHTML(pos, htm);
+};
 f.lineword = "US";
 f.offset = 0;
 f.limit = 20;
@@ -2620,6 +2623,11 @@ f.bulkdispline = function (data) {
 };
 f.displine = function (data) {
   console.log(data, "each liner");
+  var allbox = f._("#linebox");
+  var uniq = f.uniqid();
+  f.adjhtmlel(allbox, "beforeend", "<section id=\"".concat(uniq, "\"></section>"));
+  f.box = f._("#".concat(uniq));
+  f.r("#".concat(uniq), "sdfgh");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 

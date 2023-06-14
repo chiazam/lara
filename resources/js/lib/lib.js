@@ -146,6 +146,11 @@ f.ajax = function (url, func = (function (res) { }), get = {}, meth = "get", pos
 
 }
 
+f.adjhtmlel = (el, pos, htm) => {
+
+    el.insertAdjacentHTML(pos, htm);
+};
+
 f.lineword = "US";
 f.offset = 0;
 f.limit = 20;
@@ -257,7 +262,17 @@ f.bulkdispline = function (data) {
 
 f.displine = function (data) {
 
-    console.log(data, "each liner")
+    console.log(data, "each liner");
+
+    let allbox = f._("#linebox");
+
+    let uniq = f.uniqid();
+
+    f.adjhtmlel(allbox, "beforeend", `<section id="${uniq}"></section>`);
+
+    f.box = f._(`#${uniq}`);
+
+    f.r(`#${uniq}`, "sdfgh");
 
 }
 
