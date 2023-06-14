@@ -351,7 +351,24 @@ class Start
             ]);
         }
 
-        $checkerpref = ['categories' => $request->categories, 'authors' = $request->authors, 'sources' => $request->sources];
+        $where = ['tagname' => $request->categories, 'author' = $request->authors, 'source' => $request->sources];
+
+        $table = DB::table("news");
+
+        if (!empty($request->word)) {
+
+            $table->orwhere('summary', "=", $request->word)->orwhere('title', "=", $request->word);
+        }
+
+        foreach ($where as $key => $value) {
+
+            if (!empty($request->$key)) {
+
+                $table->orwhere($key, "=", $value);
+            }
+        }
+
+        return $table->offset($request->offset)->limit($request->limit)->get();
     }
 
     static function BulkSaveToDB(string $table, array $bulkdata)
