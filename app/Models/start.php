@@ -341,27 +341,27 @@ class Start
         ];
     }
 
-    static function BulkSaveToDB(string $table, array $bulkinfo)
+    static function BulkSaveToDB(string $table, array $bulkdata)
     {
 
-        foreach ($bulkinfo as $key => $info) {
+        foreach ($bulkdata as $key => $data) {
 
-            self::SaveToDB($table, $info);
+            self::SaveToDB($table, $data);
         }
     }
 
-    static function SaveToDB(string $table, array $info)
+    static function SaveToDB(string $table, array $data)
     {
 
-        $numrows = self::NumRowsDB($table, $info);
+        $numrows = self::NumRowsDB($table, $data);
 
         if ($numrows == 0) {
 
             $DBTable = DB::table($table);
 
-            $create_date = ["created_at" => self::dateformat(null, "Y-m-d H:i:s")];
+            $created_at = ["created_at" => self::dateformat(null, "Y-m-d H:i:s")];
 
-            $main = array_merge($info, $create_date);
+            $main = array_merge($data, $created_at);
 
             $DBTable->insert($main);
         }
@@ -379,4 +379,41 @@ class Start
 
         return $DBTable->count();
     }
+
+    static function BulkUpdateDB(string $table, array $bulkinfodata, bool $save = false)
+    {
+
+        foreach ($bulkinfodata as $key => $infodata) {
+
+            $savedata = (($save == true && self::checkisset($infodata, ['save']) && is_array($infodata['save'])) ? ($infodata['save']) : (false));
+
+            self::UpdateDB($table, $infodata['info'], $infodata['data'], $savedata);
+        }
+    }
+
+    static function UpdateDB(string $table, array $info, array $data, array $save = false)
+    {
+        $numrows = self::NumRowsDB($table, $data);
+
+        if ($numrows > 0) {
+
+            $DBTable = DB::table($table);
+
+            foreach ($info as $key => $value) {
+
+                $DBTable->where($key, '=', $value);
+            }
+
+            $updated_at = ["updated_at" => self::dateformat(null, "Y-m-d H:i:s")];
+
+            $main = array_merge($data, $updated_at);
+
+            return $DBTable->update($main);
+        } else if (is_array($save) && $numrows == 0) {
+
+            self::SaveToDB($table, $save);
+        }
+    }
+
+    static function GetDB()
 }
