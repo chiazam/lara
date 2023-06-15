@@ -2113,79 +2113,81 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Heady)
 /* harmony export */ });
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/lib */ "./resources/js/lib/lib.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Signlog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signlog */ "./resources/js/components/Signlog.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 function Heady(props) {
   var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
   setTimeout(function () {
-    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].r("#linepref".concat(uniq), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].r("#linepref".concat(uniq), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
       className: "flex px-1 pb-1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
         className: "w-2/6 box-border px-1 font-bold",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
           onChange: function onChange(e) {
             _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.word, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, e.currentTarget.value, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors);
             console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each select");
             _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
           },
           className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
             value: "",
             children: "Categories (auto)"
           }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].categoryline.map(function (v, i) {
-            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               selected: true,
               value: v,
               children: v
-            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               value: v,
               children: v
             }, i);
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
         className: "w-2/6 box-border px-1 font-bold",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
           onChange: function onChange(e) {
             _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.word, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories, e.currentTarget.value, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors);
             console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each select");
             _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
           },
           className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
             value: "",
             children: "Sources (auto)"
           }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].sourceline.map(function (v, i) {
-            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               selected: true,
               value: v,
               children: v
-            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               value: v,
               children: v
             }, i);
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
         className: "w-2/6 box-border px-1 font-bold",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
           onChange: function onChange(e) {
             _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.word, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources, e.currentTarget.value);
             console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each select");
             _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
           },
           className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
             value: "",
             children: "Authors (auto)"
           }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].authorline.map(function (v, i) {
-            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               selected: true,
               value: v,
               children: v
-            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               value: v,
               children: v
             }, i);
@@ -2194,24 +2196,24 @@ function Heady(props) {
       })]
     }));
   }, 2000);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
       className: "w-full shadow-sm border-b top-0 fixed bg-white",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
         className: "flex items-center py-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           className: "px-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
             className: "border rounded-md w-12 h-12",
             src: _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].imglink("img/logo.png")
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           className: "px-2 flex-1 flex justify-center items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
             className: "border p-1 flex bg-gray-100 min-w-max w-3/6 h-4/6 rounded-md overflow-hidden",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               className: "border-r pr-1 bg-transparent px-2 flex-1 flex"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
               onClick: function onClick(e) {
                 _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(e.currentTarget.previousElementSibling.value, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors);
                 console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each search");
@@ -2221,14 +2223,29 @@ function Heady(props) {
               children: "Search"
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           className: "px-2 flex justify-center items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             className: "bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex",
             children: "Signup/Login"
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+        className: "flex justify-end h-0",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+          className: "hidden z-10 relative w-72",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Signlog__WEBPACK_IMPORTED_MODULE_1__["default"].loginform, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+            className: "bg-white p-1 text-center border cursor-pointer rounded-md shadow-md",
+            children: " Forget it, close "
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+          className: "z-10 relative w-72",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Signlog__WEBPACK_IMPORTED_MODULE_1__["default"].signupform, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+            className: "bg-white p-1 text-center border cursor-pointer rounded-md shadow-md",
+            children: " Forget it, close "
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
         id: "linepref".concat(uniq)
       })]
     })
@@ -2351,79 +2368,42 @@ __webpack_require__.r(__webpack_exports__);
 var signlog = {
   loginform: function loginform() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700",
+      className: "w-full bg-white rounded-lg shadow-md border",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "p-6 space-y-4 md:space-y-6 sm:p-8",
+        className: "p-2",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-          className: "text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white",
+          className: "text-lg font-bold",
           children: "Log in to your account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-          className: "space-y-4 md:space-y-6",
-          action: "#",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-              htmlFor: "email",
-              className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
-              children: "Your email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "email",
-              name: "email",
-              id: "email",
-              className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              placeholder: "name@company.com",
-              required: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-              htmlFor: "password",
-              className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
-              children: "Password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "password",
-              name: "password",
-              id: "password",
-              placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-              className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              required: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "flex items-center justify-between",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              className: "flex items-start",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                className: "flex items-center h-5",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-                  id: "remember",
-                  "aria-describedby": "remember",
-                  type: "checkbox",
-                  className: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800",
-                  required: ""
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                className: "ml-3 text-sm",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-                  htmlFor: "remember",
-                  className: "text-gray-500 dark:text-gray-300",
-                  children: "Remember me"
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-              href: "#",
-              className: "text-sm font-medium text-primary-600 hover:underline dark:text-primary-500",
-              children: "Forgot password?"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-            type: "submit",
-            className: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
-            children: "Sign in"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-            className: "text-sm font-light text-gray-500 dark:text-gray-400",
-            children: ["Don\u2019t have an account yet? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-              href: "#",
-              className: "font-medium text-primary-600 hover:underline dark:text-primary-500",
-              children: "Sign up"
-            })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+            htmlFor: "email",
+            className: "block mb-1 text-sm font-medium",
+            children: "Your email"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "email",
+            name: "email",
+            id: "email",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            placeholder: "name@company.com",
+            required: ""
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+            htmlFor: "password",
+            className: "block mb-1 text-sm font-medium",
+            children: "Password"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "password",
+            name: "password",
+            id: "password",
+            placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            required: ""
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+          type: "submit",
+          className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
+          children: "Login"
         })]
       })
     });
@@ -2436,83 +2416,72 @@ var signlog = {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           className: "text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white",
           children: "Create and account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-          className: "space-y-4 md:space-y-6",
-          action: "#",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-              htmlFor: "email",
-              className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
-              children: "Your email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "email",
-              name: "email",
-              id: "email",
-              className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              placeholder: "name@company.com",
-              required: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-              htmlFor: "password",
-              className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
-              children: "Password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "password",
-              name: "password",
-              id: "password",
-              placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-              className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              required: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-              htmlFor: "confirm-password",
-              className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
-              children: "Confirm password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "confirm-password",
-              name: "confirm-password",
-              id: "confirm-password",
-              placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-              className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              required: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "flex items-start",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-              className: "flex items-center h-5",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-                id: "terms",
-                "aria-describedby": "terms",
-                type: "checkbox",
-                className: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800",
-                required: ""
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-              className: "ml-3 text-sm",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                htmlFor: "terms",
-                className: "font-light text-gray-500 dark:text-gray-300",
-                children: ["I accept the ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                  className: "font-medium text-primary-600 hover:underline dark:text-primary-500",
-                  href: "#",
-                  children: "Terms and Conditions"
-                })]
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-            type: "submit",
-            className: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
-            children: "Create an account"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-            className: "text-sm font-light text-gray-500 dark:text-gray-400",
-            children: ["Already have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-              href: "#",
-              className: "font-medium text-primary-600 hover:underline dark:text-primary-500",
-              children: "Login here"
-            })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+            htmlFor: "email",
+            className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+            children: "Your email"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "email",
+            name: "email",
+            id: "email",
+            className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+            placeholder: "name@company.com",
+            required: ""
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+            htmlFor: "password",
+            className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+            children: "Password"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "password",
+            name: "password",
+            id: "password",
+            placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+            className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+            required: ""
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+            htmlFor: "confirm-password",
+            className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+            children: "Confirm password"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "confirm-password",
+            name: "confirm-password",
+            id: "confirm-password",
+            placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+            className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+            required: ""
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          className: "flex items-start",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "flex items-center h-5",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+              id: "terms",
+              "aria-describedby": "terms",
+              type: "checkbox",
+              className: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800",
+              required: ""
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "ml-3 text-sm",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+              htmlFor: "terms",
+              className: "font-light text-gray-500 dark:text-gray-300",
+              children: ["I accept the ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+                className: "font-medium text-primary-600 hover:underline dark:text-primary-500",
+                href: "#",
+                children: "Terms and Conditions"
+              })]
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+          type: "submit",
+          className: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+          children: "Create an account"
         })]
       })
     });

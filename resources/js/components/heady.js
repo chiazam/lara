@@ -1,4 +1,5 @@
 import f from "../lib/lib";
+import signlog from "./Signlog";
 
 export default function Heady(props) {
 
@@ -143,6 +144,26 @@ export default function Heady(props) {
                 <section className="px-2 flex justify-center items-center">
 
                     <button className="bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex">Signup/Login</button>
+
+                </section>
+
+            </section>
+
+            <section className="flex justify-end h-0">
+
+                <section className="hidden z-10 relative w-72">
+
+                    <signlog.loginform />
+
+                    <section className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md"> Forget it, close </section>
+
+                </section>
+
+                <section className="z-10 relative w-72">
+
+                    <signlog.signupform />
+
+                    <section className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md"> Forget it, close </section>
 
                 </section>
 
