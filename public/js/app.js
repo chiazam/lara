@@ -2217,6 +2217,7 @@ function News(props) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
           className: "font-bold text-orange-600 text-lg hover:underline",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+            target: "_blank",
             href: news.link,
             children: news.title
           })
@@ -2232,6 +2233,7 @@ function News(props) {
           className: "font-bold",
           children: ["Category : ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
             className: " text-orange-600 hover:underline",
+            target: "_blank",
             href: news.taglink,
             children: [news.source, ", ", news.tagname]
           })]
@@ -2462,10 +2464,10 @@ function Timeline(props) {
       className: "py-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linebox",
-        className: "mt-14 px-2 max-w-3xl bg-white m-auto"
+        className: "mt-14 px-2 max-w-3xl bg-white m-auto border"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linenext",
-        className: "my-2 px-2 max-w-3x m-auto"
+        className: "my-2 max-w-3xl m-auto"
       })]
     })
   }, uniq);
@@ -2699,7 +2701,7 @@ f.dispnextline = function (next) {
         onClick: function onClick() {
           f.getline(f.queryline);
         },
-        className: "bg-white p-2",
+        className: "bg-white p-2 text-center font-bold border cursor-pointer",
         children: " See More "
       }, uniq));
     }, 2000);

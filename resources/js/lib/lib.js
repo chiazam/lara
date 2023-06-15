@@ -274,7 +274,7 @@ f.dispnextline = function (next) {
 
                 f.getline(f.queryline);
 
-            }} key={uniq} className="bg-white p-2"> See More </section>);
+            }} key={uniq} className="bg-white p-2 text-center font-bold border cursor-pointer"> See More </section>);
 
         }, 2000);
 

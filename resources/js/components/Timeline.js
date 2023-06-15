@@ -16,9 +16,9 @@ export default function Timeline(props) {
 
         <section className="py-1">
 
-            <section id={`linebox`} className="mt-14 px-2 max-w-3xl bg-white m-auto"></section>
+            <section id={`linebox`} className="mt-14 px-2 max-w-3xl bg-white m-auto border"></section>
 
-            <section id={`linenext`} className="my-2 px-2 max-w-3x m-auto"></section>
+            <section id={`linenext`} className="my-2 max-w-3xl m-auto"></section>
 
         </section>
 

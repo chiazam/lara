@@ -22,7 +22,7 @@ export default function News(props) {
 
             <section className="flex-1 ml-2">
 
-                <section className="font-bold text-orange-600 text-lg hover:underline"><a href={news.link}>{news.title}</a></section>
+                <section className="font-bold text-orange-600 text-lg hover:underline"><a target="_blank" href={news.link}>{news.title}</a></section>
 
                 <section>{news.summary}</section>
 
@@ -30,7 +30,7 @@ export default function News(props) {
 
                 {(news.source != null) ? (<section className="font-bold">Source : {news.source}</section>) : ("")}
 
-                {(news.tagname != null && news.taglink != null) ? (<section className="font-bold">Category : <a className=" text-orange-600 hover:underline" href={news.taglink}>{news.source}, {news.tagname}</a></section>) : ("")}
+                {(news.tagname != null && news.taglink != null) ? (<section className="font-bold">Category : <a className=" text-orange-600 hover:underline" target="_blank" href={news.taglink}>{news.source}, {news.tagname}</a></section>) : ("")}
 
                 {(news.date != null) ? (<section className="font-bold">Release Date : {news.date}</section>) : ("")}
 
