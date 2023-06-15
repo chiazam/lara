@@ -400,7 +400,7 @@ class Start
 
         $table = DB::table("news");
 
-        return $table->select($request['sort'])->offset($request['offset'])->limit($request['limit'])->distinct()->get();
+        return $table->select($request['sort'])->offset($request['offset'])->limit($request['limit'])->inRandomOrder()->distinct()->get();
 
         $table = DB::table("news");
     }

@@ -10,7 +10,15 @@ export default function Heady(props) {
 
             <section className="w-2/6 box-border px-1 font-bold">
 
-                <select className="w-full hover:text-white hover:bg-orange-600 cursor-pointer">
+                <select onChange={function (e) {
+
+                    f.updatequeryline(f.queryline.word, f.queryline.limit, 0, e.currentTarget.value, f.queryline.sources, f.queryline.authors);
+
+                    console.log(f.queryline, "each select");
+
+                    f.getline(f.queryline);
+
+                }} className="w-full hover:text-white hover:bg-orange-600 cursor-pointer">
 
                     <option value="">Categories (auto)</option>
 
@@ -18,11 +26,11 @@ export default function Heady(props) {
 
                         return ((v == null) ? ("") : (((v == f.queryline.categories) ? (
 
-                            <option selected value={v}>{v}</option>
+                            <option selected key={i} value={v}>{v}</option>
 
                         ) : (
 
-                            <option value={v}>{v}</option>
+                            <option key={i} value={v}>{v}</option>
 
                         ))));
 
@@ -34,7 +42,15 @@ export default function Heady(props) {
 
             <section className="w-2/6 box-border px-1 font-bold">
 
-                <select className="w-full hover:text-white hover:bg-orange-600 cursor-pointer">
+                <select onChange={function (e) {
+
+                    f.updatequeryline(f.queryline.word, f.queryline.limit, 0, f.queryline.categories, e.currentTarget.value, f.queryline.authors);
+
+                    console.log(f.queryline, "each select");
+
+                    f.getline(f.queryline);
+
+                }} className="w-full hover:text-white hover:bg-orange-600 cursor-pointer">
 
                     <option value="">Sources (auto)</option>
 
@@ -42,11 +58,11 @@ export default function Heady(props) {
 
                         return ((v == null) ? ("") : (((v == f.queryline.sources) ? (
 
-                            <option selected value={v}>{v}</option>
+                            <option selected key={i} value={v}>{v}</option>
 
                         ) : (
 
-                            <option value={v}>{v}</option>
+                            <option key={i} value={v}>{v}</option>
 
                         ))));
 
@@ -58,7 +74,15 @@ export default function Heady(props) {
 
             <section className="w-2/6 box-border px-1 font-bold">
 
-                <select className="w-full hover:text-white hover:bg-orange-600 cursor-pointer">
+                <select onChange={function (e) {
+
+                    f.updatequeryline(f.queryline.word, f.queryline.limit, 0, f.queryline.categories, f.queryline.sources, e.currentTarget.value);
+
+                    console.log(f.queryline, "each select");
+
+                    f.getline(f.queryline);
+
+                }} className="w-full hover:text-white hover:bg-orange-600 cursor-pointer">
 
                     <option value="">Authors (auto)</option>
 
@@ -66,11 +90,11 @@ export default function Heady(props) {
 
                         return ((v == null) ? ("") : (((v == f.queryline.authors) ? (
 
-                            <option selected value={v}>{v}</option>
+                            <option selected key={i} value={v}>{v}</option>
 
                         ) : (
 
-                            <option value={v}>{v}</option>
+                            <option key={i} value={v}>{v}</option>
 
                         ))));
 
@@ -102,7 +126,15 @@ export default function Heady(props) {
 
                         <input className="border-r pr-1 bg-transparent px-2 flex-1 flex" />
 
-                        <button className="border-l pl-1 justify-center items-center flex">Search</button>
+                        <button onClick={function (e) {
+
+                            f.updatequeryline(e.currentTarget.previousElementSibling.value, f.queryline.limit, 0, f.queryline.categories, f.queryline.sources, f.queryline.authors);
+
+                            console.log(f.queryline, "each search");
+
+                            f.getline(f.queryline);
+
+                        }} className="border-l pl-1 justify-center items-center flex">Search</button>
 
                     </section>
 

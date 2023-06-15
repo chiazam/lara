@@ -238,6 +238,18 @@ f.getline = function (queryline) {
 
     console.log(queryline, "getliner");
 
+    if (queryline.offset == 0) {
+
+        let allbox = f._("#linebox");
+
+        allbox.innerHTML = "";
+
+        let allnext = f._("#linenext");
+
+        allnext.innerHTML = "";
+
+    }
+
     f.ajax(`${f.DOT}api/timelineApi`, f.getlinefunc, queryline);
 
 };

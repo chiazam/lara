@@ -2125,6 +2125,11 @@ function Heady(props) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         className: "w-2/6 box-border px-1 font-bold",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+          onChange: function onChange(e) {
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.word, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, e.currentTarget.value, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors);
+            console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each select");
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+          },
           className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "",
@@ -2134,15 +2139,20 @@ function Heady(props) {
               selected: true,
               value: v,
               children: v
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
               value: v,
               children: v
-            });
+            }, i);
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         className: "w-2/6 box-border px-1 font-bold",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+          onChange: function onChange(e) {
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.word, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories, e.currentTarget.value, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors);
+            console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each select");
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+          },
           className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "",
@@ -2152,15 +2162,20 @@ function Heady(props) {
               selected: true,
               value: v,
               children: v
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
               value: v,
               children: v
-            });
+            }, i);
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         className: "w-2/6 box-border px-1 font-bold",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+          onChange: function onChange(e) {
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.word, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources, e.currentTarget.value);
+            console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each select");
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+          },
           className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "",
@@ -2170,10 +2185,10 @@ function Heady(props) {
               selected: true,
               value: v,
               children: v
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            }, i) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
               value: v,
               children: v
-            });
+            }, i);
           })]
         })
       })]
@@ -2197,6 +2212,11 @@ function Heady(props) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
               className: "border-r pr-1 bg-transparent px-2 flex-1 flex"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+              onClick: function onClick(e) {
+                _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].updatequeryline(e.currentTarget.previousElementSibling.value, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.limit, 0, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors);
+                console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each search");
+                _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
+              },
               className: "border-l pl-1 justify-center items-center flex",
               children: "Search"
             })]
@@ -2747,6 +2767,12 @@ f.updatequeryline = function () {
 };
 f.getline = function (queryline) {
   console.log(queryline, "getliner");
+  if (queryline.offset == 0) {
+    var allbox = f._("#linebox");
+    allbox.innerHTML = "";
+    var allnext = f._("#linenext");
+    allnext.innerHTML = "";
+  }
   f.ajax("".concat(f.DOT, "api/timelineApi"), f.getlinefunc, queryline);
 };
 f.getlinefunc = function (res) {
