@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Start;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -60,9 +61,14 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
-            $table = DB::table("preference");
+            $is_pref = Start::NumRowsDB("preference", ['userid' => $user['id']]);
 
-            $user['pref'] = ($table->select("sources", "categories", "authors")->distinct()->where("userid", "=", $user['id'])->get())[0];
+            if ($is_pref == 0) {
+
+                $table = DB::table("preference");
+
+                $user['pref'] = ($table->select("sources", "categories", "authors")->distinct()->where("userid", "=", $user['id'])->get())[0];
+            }
 
             return response()->json([
                 'user' => $user,

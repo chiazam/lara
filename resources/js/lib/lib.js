@@ -397,14 +397,20 @@ f.signlogactfunc = function (signlogdata) {
 
     } if (data.login == true) {
 
+        signlogbutt.innerHTML = "Alright!, getting you logged in...";
 
+        console.log(`${data.token_type} ${data.access_token}`);
 
+        f.ajax(`${f.DOT}api/me`, f.loginactfunc, {}, "POST", {}, { "Authorization": `${data.token_type} ${data.access_token}` });
 
     }
 
 
+}
 
+f.loginactfunc = function (logindata) {
 
+    console.log(logindata.data);
 
 }
 

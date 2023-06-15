@@ -2845,7 +2845,16 @@ f.signlogactfunc = function (signlogdata) {
     signlogerr.innerHTML = data.message + (data.hasOwnProperty('errors') && data.errors.hasOwnProperty('email') ? ", <b>email</b> : ".concat(data.errors.email[0]) : "") + (data.hasOwnProperty('errors') && data.errors.hasOwnProperty('password') ? ", <b>password</b> : ".concat(data.errors.password[0]) : "");
     signlogerr.classList.remove("hidden");
   }
-  if (data.login == true) {}
+  if (data.login == true) {
+    signlogbutt.innerHTML = "Alright!, getting you logged in...";
+    console.log("".concat(data.token_type, " ").concat(data.access_token));
+    f.ajax("".concat(f.DOT, "api/me"), f.loginactfunc, {}, "POST", {}, {
+      "Authorization": "".concat(data.token_type, " ").concat(data.access_token)
+    });
+  }
+};
+f.loginactfunc = function (logindata) {
+  console.log(logindata.data);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
