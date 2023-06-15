@@ -389,7 +389,7 @@ class Start
                 }
             }
 
-            return $table->offset($request['offset'])->limit($request['limit'])->get();
+            return $table->offset($request['offset'])->limit($request['limit'])->orderBy("date", "DESC")->inRandomOrder()->get();
         }
 
         return [];
