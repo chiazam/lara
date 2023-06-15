@@ -1,0 +1,26 @@
+NewsViews Web Scraper and Crawler is a news viewing platform for readers to follow up events happening around the world.
+
+Public github repo : https://github.com/chiazam/lara
+
+Public test link : https://lara.spetalo.com/
+
+Public test api crawler/scraper path:
+
+       for BBC scraping : GET https://lara.spetalo.com/api/scrapeBBC
+
+       for NewsApi scraping: GET https://lara.spetalo.com/api/NewsApi
+
+       for Guardian scraping: GET https://lara.spetalo.com/api/GuardianApi
+
+       for All scraping: GET https://lara.spetalo.com/api/scrapeAllApi
+
+Note to save crawler/scraper data to database : add url query "?save=true"
+
+        GET https://lara.spetalo.com/api/scrapeBBC?save=true
+
+        GET https://lara.spetalo.com/api/NewsApi?save=true
+
+        GET https://lara.spetalo.com/api/GuardianApi?save=true
+
+        GET https://lara.spetalo.com/api/scrapeAllApi?save=true
+
