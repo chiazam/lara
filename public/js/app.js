@@ -2118,35 +2118,101 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Heady(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
-      className: "flex w-full shadow-sm border-b top-0 fixed bg-white py-1",
+  var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
+  setTimeout(function () {
+    _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].r("#linepref".concat(uniq), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      className: "flex px-1 pb-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-        className: "px-2",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          className: "border rounded-md w-12 h-12",
-          src: _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].imglink("img/logo.png")
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-        className: "px-2 flex-1 flex justify-center items-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
-          className: "border p-1 flex bg-gray-100 min-w-max w-3/6 h-4/6 rounded-md overflow-hidden",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-            className: "border-r pr-1 bg-transparent px-2 flex-1 flex"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-            className: "border-l pl-1 justify-center items-center flex",
-            children: "Search"
+        className: "w-2/6 box-border px-1 font-bold",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+          className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            value: "",
+            children: "Categories (auto)"
+          }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].categoryline.map(function (v, i) {
+            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.categories ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+              selected: true,
+              value: v,
+              children: v
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+              value: v,
+              children: v
+            });
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-        className: "px-2 flex justify-center items-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          className: "bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex",
-          children: "Signup/Login"
+        className: "w-2/6 box-border px-1 font-bold",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+          className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            value: "",
+            children: "Sources (auto)"
+          }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].sourceline.map(function (v, i) {
+            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.sources ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+              selected: true,
+              value: v,
+              children: v
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+              value: v,
+              children: v
+            });
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        className: "w-2/6 box-border px-1 font-bold",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+          className: "w-full hover:text-white hover:bg-orange-600 cursor-pointer",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+            value: "",
+            children: "Authors (auto)"
+          }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].authorline.map(function (v, i) {
+            return v == null ? "" : v == _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline.authors ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+              selected: true,
+              value: v,
+              children: v
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+              value: v,
+              children: v
+            });
+          })]
         })
       })]
+    }));
+  }, 2000);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
+      className: "w-full shadow-sm border-b top-0 fixed bg-white",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        className: "flex items-center py-1",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          className: "px-2",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            className: "border rounded-md w-12 h-12",
+            src: _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].imglink("img/logo.png")
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          className: "px-2 flex-1 flex justify-center items-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+            className: "border p-1 flex bg-gray-100 min-w-max w-3/6 h-4/6 rounded-md overflow-hidden",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              className: "border-r pr-1 bg-transparent px-2 flex-1 flex"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+              className: "border-l pl-1 justify-center items-center flex",
+              children: "Search"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          className: "px-2 flex justify-center items-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: "bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex",
+            children: "Signup/Login"
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+        id: "linepref".concat(uniq)
+      })]
     })
-  }, _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid());
+  }, uniq);
 }
 
 /***/ }),
@@ -2464,7 +2530,7 @@ function Timeline(props) {
       className: "py-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linebox",
-        className: "mt-14 px-2 max-w-3xl bg-white m-auto border"
+        className: "mt-20 px-2 max-w-3xl bg-white m-auto border"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linenext",
         className: "my-2 max-w-3xl m-auto"
