@@ -257,9 +257,13 @@ f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.off
     f.queryline.sources = ((sources != false) ? (sources) : (f.randarr(f.sourceline)));
     f.queryline.authors = ((authors != false) ? (authors) : (f.randarr(f.authorline)));
 
-    f.logid.user.pref = { categories: f.queryline.categories, sources: f.queryline.sources, authors: f.queryline.authors }
+    if (f.hasOwnProperty("logid")) {
 
-    localStorage.setItem('logid', JSON.stringify(f.logid));
+        f.logid.user.pref = { categories: f.queryline.categories, sources: f.queryline.sources, authors: f.queryline.authors }
+
+        localStorage.setItem('logid', JSON.stringify(f.logid));
+
+    }
 
     console.log(f.queryline);
 
