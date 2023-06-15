@@ -16,6 +16,12 @@ f.r = (s, c) => {
 
 f.LTD = "NewsViews";
 
+f.reload = function () {
+
+    location.reload();
+
+};
+
 f.uniqid = (n = 1) => {
 
     if (n < 1) {
@@ -412,6 +418,22 @@ f.loginactfunc = function (logindata) {
 
     console.log(logindata.data);
 
+    localStorage.setItem('logid', JSON.stringify(logindata.data));
+
+    f.reload();
+
 }
+
+f.loggedincheck = function () {
+
+    if ((localStorage.getItem('logid') != null && f.instanceof(JSON.parse(localStorage.getItem('logid')), Object) == true)) {
+
+        f.logid = JSON.parse(localStorage.getItem('logid'));
+
+    }
+
+};
+
+f.loggedincheck();
 
 export default f;

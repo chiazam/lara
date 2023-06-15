@@ -2605,6 +2605,9 @@ f.r = function (s, c) {
   (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(f._(s)).render(c);
 };
 f.LTD = "NewsViews";
+f.reload = function () {
+  location.reload();
+};
 f.uniqid = function () {
   var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
   if (n < 1) {
@@ -2855,7 +2858,15 @@ f.signlogactfunc = function (signlogdata) {
 };
 f.loginactfunc = function (logindata) {
   console.log(logindata.data);
+  localStorage.setItem('logid', JSON.stringify(logindata.data));
+  f.reload();
 };
+f.loggedincheck = function () {
+  if (localStorage.getItem('logid') != null && f["instanceof"](JSON.parse(localStorage.getItem('logid')), Object) == true) {
+    f.logid = JSON.parse(localStorage.getItem('logid'));
+  }
+};
+f.loggedincheck();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
 /***/ }),

@@ -63,11 +63,18 @@ class AuthController extends Controller
 
             $is_pref = Start::NumRowsDB("preference", ['userid' => $user['id']]);
 
-            if ($is_pref == 0) {
+            if ($is_pref > 0) {
 
                 $table = DB::table("preference");
 
-                $user['pref'] = ($table->select("sources", "categories", "authors")->distinct()->where("userid", "=", $user['id'])->get())[0];
+                $user['pref'] = ($table->select("sources", "categories", "authors")->distinct()->where("userid", "=", $user['id'])->get());
+            } else {
+
+                $user['pref'] = [
+                    "sources" => "",
+                    "categories" => "",
+                    "authors" => ""
+                ];
             }
 
             return response()->json([
