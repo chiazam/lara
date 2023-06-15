@@ -2231,8 +2231,11 @@ function Heady(props) {
         }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].isloggedin() == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           className: "px-2 flex justify-center items-center",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            id: "logoutbutt",
+            onClick: function onClick() {
+              _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].logoutact();
+            },
             className: "text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1",
-            onClick: function onClick(e) {},
             children: "Logout"
           })
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
@@ -2641,6 +2644,12 @@ f.loop = function (arrays, clbak) {
   }
   return info;
 };
+f.base64enc = function (s) {
+  return btoa(s);
+};
+f.base64dec = function (s) {
+  return atob(s);
+};
 f.objloop = function (objs, clbak) {
   var info = [];
   var i = 0;
@@ -2879,9 +2888,11 @@ f.signlogactfunc = function (signlogdata) {
   if (data.login == true) {
     signlogbutt.innerHTML = "Alright!, getting you logged in...";
     console.log("".concat(data.token_type, " ").concat(data.access_token));
-    f.ajax("".concat(f.DOT, "api/me"), f.loginactfunc, {}, "POST", {}, {
+    var header = {
       "Authorization": "".concat(data.token_type, " ").concat(data.access_token)
-    });
+    };
+    localStorage.setItem('authheader', f.base64enc(JSON.stringify(header)));
+    f.ajax("".concat(f.DOT, "api/me"), f.loginactfunc, {}, "POST", {}, header);
   }
 };
 f.loginactfunc = function (logindata) {
@@ -2913,6 +2924,20 @@ f.isloggedin = function () {
 };
 console.log(!f.isloggedin(), "damn men");
 f.spinpref(!f.isloggedin());
+f.logoutact = function () {
+  f._("#logoutbutt").innerHTML = "logging out...";
+  if (localStorage.getItem('authheader') != null) {
+    var authheader = JSON.parse(f.base64dec(localStorage.getItem('authheader')));
+    console.log('authheader');
+    f.ajax("".concat(f.DOT, "api/logout"), f.logoutactfunc, {}, "POST", {}, authheader);
+  } else {
+    f.logoutactfunc();
+  }
+};
+f.logoutactfunc = function () {
+  localStorage.clear();
+  f.reload();
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
 /***/ }),

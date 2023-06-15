@@ -145,9 +145,11 @@ export default function Heady(props) {
 
                 {((f.isloggedin() == true) ? (<section className="px-2 flex justify-center items-center">
 
-                    <button className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1" onClick={function (e) {
+                    <button id="logoutbutt" onClick={function () {
 
-                    }}>Logout</button>
+                        f.logoutact();
+
+                    }} className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1">Logout</button>
 
                 </section>) : (<section className="px-2 flex justify-center items-center">
 

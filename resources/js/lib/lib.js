@@ -57,6 +57,10 @@ f.loop = (arrays, clbak) => {
 
 };
 
+f.base64enc = (s => btoa(s));
+
+f.base64dec = (s => atob(s));
+
 f.objloop = (objs, clbak) => {
 
     let info = [];
@@ -428,7 +432,11 @@ f.signlogactfunc = function (signlogdata) {
 
         console.log(`${data.token_type} ${data.access_token}`);
 
-        f.ajax(`${f.DOT}api/me`, f.loginactfunc, {}, "POST", {}, { "Authorization": `${data.token_type} ${data.access_token}` });
+        let header = { "Authorization": `${data.token_type} ${data.access_token}` };
+
+        localStorage.setItem('authheader', f.base64enc(JSON.stringify(header)));
+
+        f.ajax(`${f.DOT}api/me`, f.loginactfunc, {}, "POST", {}, header);
 
     }
 
@@ -476,5 +484,35 @@ f.isloggedin = function () {
 console.log((!f.isloggedin()), "damn men");
 
 f.spinpref((!f.isloggedin()));
+
+f.logoutact = function () {
+
+    f._(`#logoutbutt`).innerHTML = "logging out...";
+
+    if (localStorage.getItem('authheader') != null) {
+
+        let authheader = JSON.parse(f.base64dec(localStorage.getItem('authheader')));
+
+        console.log('authheader')
+
+        f.ajax(`${f.DOT}api/logout`, f.logoutactfunc, {}, "POST", {}, authheader);
+
+    } else {
+
+        f.logoutactfunc();
+
+    }
+
+}
+
+
+f.logoutactfunc = function () {
+
+    localStorage.clear();
+
+    f.reload();
+
+}
+
 
 export default f;
