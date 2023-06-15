@@ -16,7 +16,7 @@ let signlog = {
                 <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border w-full box-border p-1 rounded-md loginform" required="" />
             </div>
 
-            <button id="loginform" className="bg-gray-50 border w-full box-border p-1 rounded-md mt-4">Login</button>
+            <button id="loginform" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4">Login</button>
         </div>
     </div>),
 
@@ -40,7 +40,7 @@ let signlog = {
                 <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border w-full box-border p-1 rounded-md signupform" required="" />
             </div>
 
-            <button id="signupform" className="bg-gray-50 border w-full box-border p-1 rounded-md mt-4">Create an account</button>
+            <button id="signupform" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4">Create an account</button>
         </div>
     </div>)
 

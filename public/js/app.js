@@ -2219,14 +2219,14 @@ function Heady(props) {
                 console.log(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline, "each search");
                 _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
               },
-              className: "border-l pl-1 justify-center items-center flex",
+              className: "text-white bg-orange-600 rounded-full border-l py-1 px-2 justify-center items-center flex",
               children: "Search"
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
           className: "px-2 flex justify-center items-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex mr-1",
+            className: "text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1",
             onClick: function onClick(e) {
               var loginpop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#loginpop");
               var signuppop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#signuppop");
@@ -2241,7 +2241,7 @@ function Heady(props) {
               loginpop.classList.remove("hidden");
               signuppop.classList.add("hidden");
             },
-            className: "bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex",
+            className: "text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex",
             children: "Login"
           })]
         })]
@@ -2257,7 +2257,7 @@ function Heady(props) {
               loginpop.classList.add("hidden");
               signuppop.classList.add("hidden");
             },
-            className: "bg-white p-1 text-center border cursor-pointer rounded-md shadow-md",
+            className: "text-white bg-orange-600 p-1 text-center border cursor-pointer rounded-md shadow-md",
             children: "Hmmm, Forget It? close! "
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
@@ -2270,7 +2270,7 @@ function Heady(props) {
               loginpop.classList.add("hidden");
               signuppop.classList.add("hidden");
             },
-            className: "bg-white p-1 text-center border cursor-pointer rounded-md shadow-md",
+            className: "text-white bg-orange-600 p-1 text-center border cursor-pointer rounded-md shadow-md",
             children: "Hmmm, Forget It? close! "
           })]
         })]
@@ -2431,7 +2431,7 @@ var signlog = {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
           id: "loginform",
-          className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
+          className: "text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4",
           children: "Login"
         })]
       })
@@ -2486,7 +2486,7 @@ var signlog = {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
           id: "signupform",
-          className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
+          className: "text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4",
           children: "Create an account"
         })]
       })
@@ -2768,7 +2768,7 @@ f.dispnextline = function (next) {
         onClick: function onClick() {
           f.getline(f.queryline);
         },
-        className: "bg-white p-2 text-center font-bold border cursor-pointer",
+        className: "rounded-md text-white bg-orange-600 p-2 text-center font-bold border cursor-pointer",
         children: " See More "
       }, uniq));
     }, 2000);
@@ -2789,6 +2789,23 @@ f.displine = function (data) {
     news: data
   }));
 };
+f.signlogact = function (type) {
+  console.log(queryline, "getliner");
+  if (queryline.offset == 0) {
+    var allbox = f._("#linebox");
+    allbox.innerHTML = "";
+    var allnext = f._("#linenext");
+    allnext.innerHTML = "";
+  }
+  var logsignform = {};
+  var pointdom = "".concat(type, "form");
+  f.loop(f._all(".".concat(pointdom)), function (el) {
+    logsignform[el.name] = el.value;
+  });
+  f._("#".concat(pointdom)).innerHTML = "Please a sec...";
+  f.ajax("".concat(f.DOT, "api/timelineApi"), f.signlogactfunc, {}, "POST", logsignform);
+};
+f.signlogactfunc = function (signlogdata) {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
 /***/ }),

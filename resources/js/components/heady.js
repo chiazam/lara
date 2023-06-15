@@ -135,7 +135,7 @@ export default function Heady(props) {
 
                             f.getline(f.queryline);
 
-                        }} className="border-l pl-1 justify-center items-center flex">Search</button>
+                        }} className="text-white bg-orange-600 rounded-full border-l py-1 px-2 justify-center items-center flex">Search</button>
 
                     </section>
 
@@ -143,7 +143,7 @@ export default function Heady(props) {
 
                 <section className="px-2 flex justify-center items-center">
 
-                    <button className="bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex mr-1" onClick={function (e) {
+                    <button className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1" onClick={function (e) {
 
                         let loginpop = f._("#loginpop");
 
@@ -165,7 +165,7 @@ export default function Heady(props) {
 
                         signuppop.classList.add("hidden");
 
-                    }} className="bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex">Login</button>
+                    }} className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex">Login</button>
 
                 </section>
 
@@ -187,7 +187,7 @@ export default function Heady(props) {
 
                         signuppop.classList.add("hidden");
 
-                    }} className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md">Hmmm, Forget It? close! </section>
+                    }} className="text-white bg-orange-600 p-1 text-center border cursor-pointer rounded-md shadow-md">Hmmm, Forget It? close! </section>
 
                 </section>
 
@@ -205,7 +205,7 @@ export default function Heady(props) {
 
                         signuppop.classList.add("hidden");
 
-                    }} className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md">Hmmm, Forget It? close! </section>
+                    }} className="text-white bg-orange-600 p-1 text-center border cursor-pointer rounded-md shadow-md">Hmmm, Forget It? close! </section>
 
                 </section>
 

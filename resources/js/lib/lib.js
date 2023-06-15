@@ -286,7 +286,7 @@ f.dispnextline = function (next) {
 
                 f.getline(f.queryline);
 
-            }} key={uniq} className="bg-white p-2 text-center font-bold border cursor-pointer"> See More </section>);
+            }} key={uniq} className="rounded-md text-white bg-orange-600 p-2 text-center font-bold border cursor-pointer"> See More </section>);
 
         }, 2000);
 
@@ -318,6 +318,44 @@ f.displine = function (data) {
     f.box = f._(`#${uniq}`);
 
     f.r(`#${uniq}`, <News news={data} />);
+
+}
+
+f.signlogact = function (type) {
+
+    console.log(queryline, "getliner");
+
+    if (queryline.offset == 0) {
+
+        let allbox = f._("#linebox");
+
+        allbox.innerHTML = "";
+
+        let allnext = f._("#linenext");
+
+        allnext.innerHTML = "";
+
+    }
+
+    let logsignform = {};
+
+    let pointdom = `${type}form`;
+
+    f.loop(f._all(`.${pointdom}`), function (el) {
+
+        logsignform[el.name] = el.value;
+
+    });
+
+    f._(`#${pointdom}`).innerHTML = "Please a sec..."
+
+    f.ajax(`${f.DOT}api/timelineApi`, f.signlogactfunc, {}, "POST", logsignform);
+
+};
+
+f.signlogactfunc = function (signlogdata) {
+
+
 
 }
 
