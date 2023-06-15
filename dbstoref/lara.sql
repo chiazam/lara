@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.migrations: ~5 rows (approximately)
+-- Dumping data for table lara.migrations: ~6 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
@@ -327,12 +327,22 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.personal_access_tokens: ~0 rows (approximately)
+-- Dumping data for table lara.personal_access_tokens: ~11 rows (approximately)
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
 REPLACE INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-	(8, 'App\\Models\\User', 1, 'auth_token', 'a65bf4ff7ab2ddbc99ac72b1de6b6bbc158be0144181fa824ad9b527218993a5', '["*"]', '2023-06-14 04:40:27', '2023-06-14 04:40:03', '2023-06-14 04:40:27');
+	(10, 'App\\Models\\User', 2, 'auth_token', 'cc3fff58b58c617c0f0f6c0cd2039b040b4a8758b9a4ebd70cf420f73f934df0', '["*"]', NULL, '2023-06-15 02:49:23', '2023-06-15 02:49:23'),
+	(11, 'App\\Models\\User', 2, 'auth_token', 'c9b203fe8d587a61615720b85fc1fd1c0ac6c7c687827c3539197fc8bdd1b6c8', '["*"]', NULL, '2023-06-15 04:36:04', '2023-06-15 04:36:04'),
+	(12, 'App\\Models\\User', 2, 'auth_token', 'e91b02d33150094e62ddc1d06e4bd7d707cff3cace5ccb57e5c24cf0fc5d6090', '["*"]', NULL, '2023-06-15 04:44:58', '2023-06-15 04:44:58'),
+	(13, 'App\\Models\\User', 2, 'auth_token', 'bf486d02f8780a662784d069974669ef029db6f63f7aef9d5ce63596b740440f', '["*"]', NULL, '2023-06-15 04:47:10', '2023-06-15 04:47:10'),
+	(14, 'App\\Models\\User', 2, 'auth_token', '8134656e41940590ade27a5a15c62d2d8c1b1937c20173dbf8dac6322fe6f3f9', '["*"]', NULL, '2023-06-15 04:50:08', '2023-06-15 04:50:08'),
+	(16, 'App\\Models\\User', 2, 'auth_token', '2374ddd8e6fa549bb77e5dbce496a7fb7f51d1e7c533990120a35ee60d9dc1d3', '["*"]', NULL, '2023-06-15 04:59:10', '2023-06-15 04:59:10'),
+	(17, 'App\\Models\\User', 2, 'auth_token', 'a68ad5acc89598289e3d892f1e943a868da5df6859142e7bee1b69f1e4e9627f', '["*"]', NULL, '2023-06-15 05:03:09', '2023-06-15 05:03:09'),
+	(18, 'App\\Models\\User', 2, 'auth_token', '4d1ca7ff03fc8ebc19c26a21c170c9383f93bf357f899c6a3b5f1055c4ca61df', '["*"]', NULL, '2023-06-15 05:07:42', '2023-06-15 05:07:42'),
+	(19, 'App\\Models\\User', 2, 'auth_token', '190b4725957a2291642354d8d402be56a91343c3cbeb0dc2cd40559a374151c7', '["*"]', NULL, '2023-06-15 05:12:55', '2023-06-15 05:12:55'),
+	(20, 'App\\Models\\User', 2, 'auth_token', '3042dbca875a49cb4290b57f0b3e5f18f6a04087bd20261df476d33dbb81524b', '["*"]', NULL, '2023-06-15 05:16:17', '2023-06-15 05:16:17'),
+	(21, 'App\\Models\\User', 2, 'auth_token', '2acf2770c35c2960ef8b2176bc05745b6c73971dcb8a358d5ad1e2b15b0daf9a', '["*"]', NULL, '2023-06-15 06:18:07', '2023-06-15 06:18:07');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 
 -- Dumping structure for table lara.preference
@@ -345,12 +355,14 @@ CREATE TABLE IF NOT EXISTS `preference` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.preference: ~0 rows (approximately)
+-- Dumping data for table lara.preference: ~3 rows (approximately)
 /*!40000 ALTER TABLE `preference` DISABLE KEYS */;
 REPLACE INTO `preference` (`id`, `userid`, `sources`, `categories`, `authors`, `created_at`, `updated_at`) VALUES
-	(2, '1', '', '', '', '2023-06-14 12:23:33', '2023-06-14 12:50:18');
+	(2, '1', 'Associated Press', 'News', 'Catherine Herridge, Graham Kates', '2023-06-14 12:23:33', '2023-06-15 13:54:42'),
+	(3, '2', 'undefined', 'undefined', 'undefined', '2023-06-15 06:44:02', '2023-06-15 07:27:45'),
+	(4, '3', 'Guardian', 'Opinion', 'Malaika Ditabo', '2023-06-15 07:29:13', '2023-06-15 07:48:49');
 /*!40000 ALTER TABLE `preference` ENABLE KEYS */;
 
 -- Dumping structure for table lara.users
@@ -365,12 +377,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table lara.users: ~0 rows (approximately)
+-- Dumping data for table lara.users: ~4 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 REPLACE INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'john doe', 'johndoe@gmail.com', NULL, '$2y$10$rV4Gr7KCaf.GysKeMtCpeuj4a2BMFtEb1/E2/2BoeF3HQQ2fX5KIi', NULL, '2023-06-14 00:31:33', '2023-06-14 00:31:33');
+	(1, 'john doe', 'johndoe@gmail.com', NULL, '$2y$10$rV4Gr7KCaf.GysKeMtCpeuj4a2BMFtEb1/E2/2BoeF3HQQ2fX5KIi', NULL, '2023-06-14 00:31:33', '2023-06-14 00:31:33'),
+	(2, 'jane doe', 'janedoe@gmail.com', NULL, '$2y$10$2XXgMFLGvi7.pxAnjnx6OuGX3q5pbYCTlMuJ/JzJ3pFeBe6zKHgKu', NULL, '2023-06-15 02:49:23', '2023-06-15 02:49:23'),
+	(3, 'Steve\'O', 'steveo@gmail.com', NULL, '$2y$10$P6Zkb2B63g7l6ybTSdwsfeGAWwqdOQhicNLGDOrApzmgEjZAWo.De', NULL, '2023-06-15 07:27:41', '2023-06-15 07:27:41'),
+	(4, 'Daniel Darnfield', 'dandarn@gmail.com', NULL, '$2y$10$dkTd6xO3oLcTjmXQwKJUx.EcCQO8SVZ/Pb.erzLeN0vR4LxSLmhGi', NULL, '2023-06-15 07:50:53', '2023-06-15 07:50:53');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
