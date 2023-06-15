@@ -2,8 +2,6 @@ import f from "../lib/lib";
 
 export default function Timeline(props) {
 
-    // f.updatequeryline();
-    // 
     let uniq = f.uniqid();
 
     setTimeout(function () {

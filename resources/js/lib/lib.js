@@ -98,6 +98,8 @@ f.objtourlquery = (obj => {
 
 });
 
+f.instanceof = ((v, t) => v instanceof t);
+
 f.ajax = function (url, func = (function (res) { }), get = {}, meth = "get", post = {}, head = {}) {
 
     head['Accept'] = "application/json";
@@ -186,47 +188,62 @@ f.getsort = function (sort, getsortfunc) {
 
 };
 
-f.getsort("tagname", function (res) {
+f.spinpref = function (updatequery = true) {
 
-    f.categoryline = f.loop(res.data, function (e, q, arrays) {
+    f.getsort("tagname", function (res) {
 
-        return (e.tagname);
+        f.categoryline = f.loop(res.data, function (e, q, arrays) {
 
-    });
+            return (e.tagname);
 
-    f.updatequeryline();
+        });
 
-    console.log(f.categoryline, "categoryliner");
+        if (updatequery == true) {
 
-});
+            f.updatequeryline();
 
-f.getsort("source", function (res) {
+        }
 
-    f.sourceline = f.loop(res.data, function (e, q, arrays) {
-
-        return (e.source);
+        console.log(f.categoryline, "categoryliner");
 
     });
 
-    f.updatequeryline();
+    f.getsort("source", function (res) {
 
-    console.log(f.sourceline, "sourecliner");
+        f.sourceline = f.loop(res.data, function (e, q, arrays) {
 
-});
+            return (e.source);
 
-f.getsort("author", function (res) {
+        });
 
-    f.authorline = f.loop(res.data, function (e, q, arrays) {
+        if (updatequery == true) {
 
-        return (e.author);
+            f.updatequeryline();
+
+        }
+
+        console.log(f.sourceline, "sourecliner");
 
     });
 
-    f.updatequeryline();
+    f.getsort("author", function (res) {
 
-    console.log(f.authorline, "autoliner");
+        f.authorline = f.loop(res.data, function (e, q, arrays) {
 
-});
+            return (e.author);
+
+        });
+
+        if (updatequery == true) {
+
+            f.updatequeryline();
+
+        }
+
+        console.log(f.authorline, "autoliner");
+
+    });
+}
 
 f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.offset, categories = false, sources = false, authors = false) {
 
@@ -235,6 +252,10 @@ f.updatequeryline = function (word = f.lineword, limit = f.limit, offset = f.off
     f.queryline.categories = ((categories != false) ? (categories) : (f.randarr(f.categoryline)));
     f.queryline.sources = ((sources != false) ? (sources) : (f.randarr(f.sourceline)));
     f.queryline.authors = ((authors != false) ? (authors) : (f.randarr(f.authorline)));
+
+    f.logid.user.pref = { categories: f.queryline.categories, sources: f.queryline.sources, authors: f.queryline.authors }
+
+    localStorage.setItem('logid', JSON.stringify(f.logid));
 
     console.log(f.queryline);
 
@@ -430,10 +451,24 @@ f.loggedincheck = function () {
 
         f.logid = JSON.parse(localStorage.getItem('logid'));
 
+        console.log(f.logid, "logger");
+
+        setTimeout(function () {
+
+            f.queryline = { userid: f.logid.user.id, word: "", limit: f.limit, offset: f.offset, categories: f.logid.user.pref.categories, sources: f.logid.user.pref.sources, authors: f.logid.user.pref.authors };
+
+            console.log(f.queryline, "pimpqueryer");
+
+        }, 200);
+
     }
 
 };
 
 f.loggedincheck();
+
+console.log(!f.hasOwnProperty('logid'), "damn men");
+
+f.spinpref(!f.hasOwnProperty('logid'));
 
 export default f;

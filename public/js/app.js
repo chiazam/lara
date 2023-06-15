@@ -2532,8 +2532,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Timeline(props) {
-  // f.updatequeryline();
-  // 
   var uniq = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].uniqid();
   setTimeout(function () {
     _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].getline(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].queryline);
@@ -2652,6 +2650,9 @@ f.objtourlquery = function (obj) {
   });
   return q;
 };
+f["instanceof"] = function (v, t) {
+  return v instanceof t;
+};
 f.ajax = function (url) {
   var func = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (res) {};
   var get = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -2723,27 +2724,36 @@ f.getsort = function (sort, getsortfunc) {
     offset: f.offset
   });
 };
-f.getsort("tagname", function (res) {
-  f.categoryline = f.loop(res.data, function (e, q, arrays) {
-    return e.tagname;
+f.spinpref = function () {
+  var updatequery = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  f.getsort("tagname", function (res) {
+    f.categoryline = f.loop(res.data, function (e, q, arrays) {
+      return e.tagname;
+    });
+    if (updatequery == true) {
+      f.updatequeryline();
+    }
+    console.log(f.categoryline, "categoryliner");
   });
-  f.updatequeryline();
-  console.log(f.categoryline, "categoryliner");
-});
-f.getsort("source", function (res) {
-  f.sourceline = f.loop(res.data, function (e, q, arrays) {
-    return e.source;
+  f.getsort("source", function (res) {
+    f.sourceline = f.loop(res.data, function (e, q, arrays) {
+      return e.source;
+    });
+    if (updatequery == true) {
+      f.updatequeryline();
+    }
+    console.log(f.sourceline, "sourecliner");
   });
-  f.updatequeryline();
-  console.log(f.sourceline, "sourecliner");
-});
-f.getsort("author", function (res) {
-  f.authorline = f.loop(res.data, function (e, q, arrays) {
-    return e.author;
+  f.getsort("author", function (res) {
+    f.authorline = f.loop(res.data, function (e, q, arrays) {
+      return e.author;
+    });
+    if (updatequery == true) {
+      f.updatequeryline();
+    }
+    console.log(f.authorline, "autoliner");
   });
-  f.updatequeryline();
-  console.log(f.authorline, "autoliner");
-});
+};
 f.updatequeryline = function () {
   var word = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : f.lineword;
   var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : f.limit;
@@ -2759,6 +2769,12 @@ f.updatequeryline = function () {
   f.queryline.categories = categories != false ? categories : f.randarr(f.categoryline);
   f.queryline.sources = sources != false ? sources : f.randarr(f.sourceline);
   f.queryline.authors = authors != false ? authors : f.randarr(f.authorline);
+  f.logid.user.pref = {
+    categories: f.queryline.categories,
+    sources: f.queryline.sources,
+    authors: f.queryline.authors
+  };
+  localStorage.setItem('logid', JSON.stringify(f.logid));
   console.log(f.queryline);
 };
 f.getline = function (queryline) {
@@ -2864,9 +2880,24 @@ f.loginactfunc = function (logindata) {
 f.loggedincheck = function () {
   if (localStorage.getItem('logid') != null && f["instanceof"](JSON.parse(localStorage.getItem('logid')), Object) == true) {
     f.logid = JSON.parse(localStorage.getItem('logid'));
+    console.log(f.logid, "logger");
+    setTimeout(function () {
+      f.queryline = {
+        userid: f.logid.user.id,
+        word: "",
+        limit: f.limit,
+        offset: f.offset,
+        categories: f.logid.user.pref.categories,
+        sources: f.logid.user.pref.sources,
+        authors: f.logid.user.pref.authors
+      };
+      console.log(f.queryline, "pimpqueryer");
+    }, 200);
   }
 };
 f.loggedincheck();
+console.log(!f.hasOwnProperty('logid'), "damn men");
+f.spinpref(!f.hasOwnProperty('logid'));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
 /***/ }),
