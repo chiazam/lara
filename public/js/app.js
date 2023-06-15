@@ -2401,7 +2401,6 @@ var signlog = {
             required: ""
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-          type: "submit",
           className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
           children: "Login"
         })]
@@ -2410,77 +2409,53 @@ var signlog = {
   },
   signupform: function signupform() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700",
+      className: "w-full bg-white rounded-lg shadow-md border",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "p-6 space-y-4 md:space-y-6 sm:p-8",
+        className: "p-2",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-          className: "text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white",
+          className: "text-lg font-bold",
           children: "Create and account"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+            htmlFor: "full-name",
+            className: "block mb-1 text-sm font-medium",
+            children: "Full Name"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "confirm-password",
+            name: "confirm-password",
+            id: "full-name",
+            placeholder: "John Doe",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            required: ""
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
             htmlFor: "email",
-            className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+            className: "block mb-1 text-sm font-medium",
             children: "Your email"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
             type: "email",
             name: "email",
             id: "email",
-            className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-            placeholder: "name@company.com",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            placeholder: "johndoe@domain.com",
             required: ""
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
             htmlFor: "password",
-            className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+            className: "block mb-1 text-sm font-medium",
             children: "Password"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
             type: "password",
             name: "password",
             id: "password",
             placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-            className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
             required: ""
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-            htmlFor: "confirm-password",
-            className: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
-            children: "Confirm password"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            type: "confirm-password",
-            name: "confirm-password",
-            id: "confirm-password",
-            placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-            className: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-            required: ""
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "flex items-start",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-            className: "flex items-center h-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              id: "terms",
-              "aria-describedby": "terms",
-              type: "checkbox",
-              className: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800",
-              required: ""
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-            className: "ml-3 text-sm",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-              htmlFor: "terms",
-              className: "font-light text-gray-500 dark:text-gray-300",
-              children: ["I accept the ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                className: "font-medium text-primary-600 hover:underline dark:text-primary-500",
-                href: "#",
-                children: "Terms and Conditions"
-              })]
-            })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-          type: "submit",
-          className: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+          className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
           children: "Create an account"
         })]
       })

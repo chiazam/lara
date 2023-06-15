@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -58,8 +58,14 @@ class AuthController extends Controller
 
         if (Auth::check()) {
 
+            $user = Auth::user();
+
+            $table = DB::table("preference");
+
+            $user['pref'] = ($table->select("sources", "categories", "authors")->distinct()->where("userid", "=", $user['id'])->get())[0];
+
             return response()->json([
-                'user' => Auth::user(),
+                'user' => $user,
                 "login" => true
             ]);
         } else {
