@@ -6,21 +6,21 @@ Public test link : https://lara.spetalo.com/
 
 Public test api crawler/scraper path:
 
-       for BBC scraping : GET https://lara.spetalo.com/api/scrapeBBC
+    for BBC scraping : GET https://lara.spetalo.com/api/scrapeBBC
 
-       for NewsApi scraping: GET https://lara.spetalo.com/api/NewsApi
+    for NewsApi scraping: GET https://lara.spetalo.com/api/NewsApi
 
-       for Guardian scraping: GET https://lara.spetalo.com/api/GuardianApi
+    for Guardian scraping: GET https://lara.spetalo.com/api/GuardianApi
 
-       for All scraping: GET https://lara.spetalo.com/api/scrapeAllApi
+    for All scraping: GET https://lara.spetalo.com/api/scrapeAllApi
 
 Note to save crawler/scraper data to database : add url query "?save=true"
 
-        GET https://lara.spetalo.com/api/scrapeBBC?save=true
+    GET https://lara.spetalo.com/api/scrapeBBC?save=true
 
-        GET https://lara.spetalo.com/api/NewsApi?save=true
+    GET https://lara.spetalo.com/api/NewsApi?save=true
 
-        GET https://lara.spetalo.com/api/GuardianApi?save=true
+    GET https://lara.spetalo.com/api/GuardianApi?save=true
 
-        GET https://lara.spetalo.com/api/scrapeAllApi?save=true
+    GET https://lara.spetalo.com/api/scrapeAllApi?save=true
 
