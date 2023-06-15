@@ -323,37 +323,86 @@ f.displine = function (data) {
 
 f.signlogact = function (type) {
 
-    console.log(queryline, "getliner");
-
-    if (queryline.offset == 0) {
-
-        let allbox = f._("#linebox");
-
-        allbox.innerHTML = "";
-
-        let allnext = f._("#linenext");
-
-        allnext.innerHTML = "";
-
-    }
-
     let logsignform = {};
 
     let pointdom = `${type}form`;
 
-    f.loop(f._all(`.${pointdom}`), function (el) {
+    let signloginputs = f._all(`.${pointdom}`);
+
+    let anyempty = false;
+
+    f.loop(signloginputs, function (el) {
 
         logsignform[el.name] = el.value;
 
+        if (el.value.length == 0) {
+
+            anyempty = true;
+
+        }
+
     });
 
-    f._(`#${pointdom}`).innerHTML = "Please a sec..."
+    let signlogerr = f._(`#${type}err`);
 
-    f.ajax(`${f.DOT}api/timelineApi`, f.signlogactfunc, {}, "POST", logsignform);
+    if (anyempty == false) {
+
+        let signlogbutt = f._(`#${pointdom}`);
+
+        signlogbutt.innerHTML = "Please a sec..."
+
+        signlogbutt.setAttribute("disabled", true);
+
+        signlogerr.innerHTML = "";
+
+        signlogerr.classList.add("hidden");
+
+        f.signlogtype = type;
+
+        f.ajax(`${f.DOT}api/${type}`, f.signlogactfunc, {}, "POST", logsignform);
+
+    } else {
+
+        signlogerr.innerHTML = "Make sure to fill all fields...";
+
+        signlogerr.classList.remove("hidden");
+
+    }
 
 };
 
 f.signlogactfunc = function (signlogdata) {
+
+    let data = signlogdata.data;
+
+    let type = f.signlogtype;
+
+    let pointdom = `${type}form`;
+
+    let signlogbutt = f._(`#${pointdom}`);
+
+    signlogbutt.innerHTML = (((!data.hasOwnProperty('login')) || (data.login == false)) ? (`Try again,${type}`) : ("Please a sec..."));
+
+    console.log(data);
+
+    if ((!data.hasOwnProperty('login')) || (data.login == false)) {
+
+        signlogbutt.removeAttribute("disabled");
+
+        let signlogerr = f._(`#${type}err`);
+
+        signlogerr.innerHTML = data.message + ((data.hasOwnProperty('errors') && data.errors.hasOwnProperty('email')) ? (`, <b>email</b> : ${data.errors.email[0]}`) : ("")) + ((data.hasOwnProperty('errors') && data.errors.hasOwnProperty('password')) ? (`, <b>password</b> : ${data.errors.password[0]}`) : (""));
+
+        signlogerr.classList.remove("hidden");
+
+    } if (data.login == true) {
+
+
+
+
+    }
+
+
 
 
 

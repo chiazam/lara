@@ -1,3 +1,4 @@
+import f from "../lib/lib";
 
 let signlog = {
 
@@ -8,6 +9,12 @@ let signlog = {
             </h1>
 
             <div>
+
+                <div id="loginerr" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md my-1 hidden"></div>
+
+            </div>
+
+            <div>
                 <label htmlFor="email" className="block mb-1 text-sm font-medium">Your email</label>
                 <input type="email" name="email" id="email" className="bg-gray-50 border w-full box-border p-1 rounded-md loginform" placeholder="name@company.com" required="" />
             </div>
@@ -16,7 +23,11 @@ let signlog = {
                 <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border w-full box-border p-1 rounded-md loginform" required="" />
             </div>
 
-            <button id="loginform" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4">Login</button>
+            <button onClick={function () {
+
+                f.signlogact("login");
+
+            }} id="loginform" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4">Login</button>
         </div>
     </div>),
 
@@ -25,6 +36,12 @@ let signlog = {
             <h1 className="text-lg font-bold">
                 Create and account
             </h1>
+
+            <div>
+
+                <div id="signuperr" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md my-1 hidden"></div>
+
+            </div>
 
             <div>
                 <label htmlFor="full-name" className="block mb-1 text-sm font-medium">Full Name</label>
@@ -40,7 +57,11 @@ let signlog = {
                 <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border w-full box-border p-1 rounded-md signupform" required="" />
             </div>
 
-            <button id="signupform" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4">Create an account</button>
+            <button onClick={function () {
+
+                f.signlogact("signup");
+
+            }} id="signupform" className="text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4">Create an account</button>
         </div>
     </div>)
 

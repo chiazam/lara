@@ -2391,24 +2391,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/lib */ "./resources/js/lib/lib.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 var signlog = {
   loginform: function loginform() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "w-full bg-white rounded-lg shadow-md border",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "p-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
           className: "text-lg font-bold",
           children: "Log in to your account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            id: "loginerr",
+            className: "text-white bg-orange-600 border w-full box-border p-1 rounded-md my-1 hidden"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
             htmlFor: "email",
             className: "block mb-1 text-sm font-medium",
             children: "Your email"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
             type: "email",
             name: "email",
             id: "email",
@@ -2416,12 +2423,12 @@ var signlog = {
             placeholder: "name@company.com",
             required: ""
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
             htmlFor: "password",
             className: "block mb-1 text-sm font-medium",
             children: "Password"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
             type: "password",
             name: "password",
             id: "password",
@@ -2429,7 +2436,10 @@ var signlog = {
             className: "bg-gray-50 border w-full box-border p-1 rounded-md loginform",
             required: ""
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          onClick: function onClick() {
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].signlogact("login");
+          },
           id: "loginform",
           className: "text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4",
           children: "Login"
@@ -2438,19 +2448,24 @@ var signlog = {
     });
   },
   signupform: function signupform() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "w-full bg-white rounded-lg shadow-md border",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "p-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
           className: "text-lg font-bold",
           children: "Create and account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            id: "signuperr",
+            className: "text-white bg-orange-600 border w-full box-border p-1 rounded-md my-1 hidden"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
             htmlFor: "full-name",
             className: "block mb-1 text-sm font-medium",
             children: "Full Name"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
             type: "text",
             name: "name",
             id: "full-name",
@@ -2458,12 +2473,12 @@ var signlog = {
             className: "bg-gray-50 border w-full box-border p-1 rounded-md signupform",
             required: ""
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
             htmlFor: "email",
             className: "block mb-1 text-sm font-medium",
             children: "Your email"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
             type: "email",
             name: "email",
             id: "email",
@@ -2471,12 +2486,12 @@ var signlog = {
             placeholder: "johndoe@domain.com",
             required: ""
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
             htmlFor: "password",
             className: "block mb-1 text-sm font-medium",
             children: "Password"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
             type: "password",
             name: "password",
             id: "password",
@@ -2484,7 +2499,10 @@ var signlog = {
             className: "bg-gray-50 border w-full box-border p-1 rounded-md signupform",
             required: ""
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          onClick: function onClick() {
+            _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].signlogact("signup");
+          },
           id: "signupform",
           className: "text-white bg-orange-600 border w-full box-border p-1 rounded-md mt-4",
           children: "Create an account"
@@ -2790,22 +2808,45 @@ f.displine = function (data) {
   }));
 };
 f.signlogact = function (type) {
-  console.log(queryline, "getliner");
-  if (queryline.offset == 0) {
-    var allbox = f._("#linebox");
-    allbox.innerHTML = "";
-    var allnext = f._("#linenext");
-    allnext.innerHTML = "";
-  }
   var logsignform = {};
   var pointdom = "".concat(type, "form");
-  f.loop(f._all(".".concat(pointdom)), function (el) {
+  var signloginputs = f._all(".".concat(pointdom));
+  var anyempty = false;
+  f.loop(signloginputs, function (el) {
     logsignform[el.name] = el.value;
+    if (el.value.length == 0) {
+      anyempty = true;
+    }
   });
-  f._("#".concat(pointdom)).innerHTML = "Please a sec...";
-  f.ajax("".concat(f.DOT, "api/timelineApi"), f.signlogactfunc, {}, "POST", logsignform);
+  var signlogerr = f._("#".concat(type, "err"));
+  if (anyempty == false) {
+    var signlogbutt = f._("#".concat(pointdom));
+    signlogbutt.innerHTML = "Please a sec...";
+    signlogbutt.setAttribute("disabled", true);
+    signlogerr.innerHTML = "";
+    signlogerr.classList.add("hidden");
+    f.signlogtype = type;
+    f.ajax("".concat(f.DOT, "api/").concat(type), f.signlogactfunc, {}, "POST", logsignform);
+  } else {
+    signlogerr.innerHTML = "Make sure to fill all fields...";
+    signlogerr.classList.remove("hidden");
+  }
 };
-f.signlogactfunc = function (signlogdata) {};
+f.signlogactfunc = function (signlogdata) {
+  var data = signlogdata.data;
+  var type = f.signlogtype;
+  var pointdom = "".concat(type, "form");
+  var signlogbutt = f._("#".concat(pointdom));
+  signlogbutt.innerHTML = !data.hasOwnProperty('login') || data.login == false ? "Try again,".concat(type) : "Please a sec...";
+  console.log(data);
+  if (!data.hasOwnProperty('login') || data.login == false) {
+    signlogbutt.removeAttribute("disabled");
+    var signlogerr = f._("#".concat(type, "err"));
+    signlogerr.innerHTML = data.message + (data.hasOwnProperty('errors') && data.errors.hasOwnProperty('email') ? ", <b>email</b> : ".concat(data.errors.email[0]) : "") + (data.hasOwnProperty('errors') && data.errors.hasOwnProperty('password') ? ", <b>password</b> : ".concat(data.errors.password[0]) : "");
+    signlogerr.classList.remove("hidden");
+  }
+  if (data.login == true) {}
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
 /***/ }),
