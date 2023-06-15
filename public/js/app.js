@@ -2223,26 +2223,55 @@ function Heady(props) {
               children: "Search"
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
           className: "px-2 flex justify-center items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex",
-            children: "Signup/Login"
-          })
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex mr-1",
+            onClick: function onClick(e) {
+              var loginpop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#loginpop");
+              var signuppop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#signuppop");
+              signuppop.classList.remove("hidden");
+              loginpop.classList.add("hidden");
+            },
+            children: "Signup"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onClick: function onClick(e) {
+              var loginpop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#loginpop");
+              var signuppop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#signuppop");
+              loginpop.classList.remove("hidden");
+              signuppop.classList.add("hidden");
+            },
+            className: "bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex",
+            children: "Login"
+          })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
         className: "flex justify-end h-0",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+          id: "loginpop",
           className: "hidden z-10 relative w-72",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Signlog__WEBPACK_IMPORTED_MODULE_1__["default"].loginform, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+            onClick: function onClick(e) {
+              var loginpop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#loginpop");
+              var signuppop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#signuppop");
+              loginpop.classList.add("hidden");
+              signuppop.classList.add("hidden");
+            },
             className: "bg-white p-1 text-center border cursor-pointer rounded-md shadow-md",
-            children: " Forget it, close "
+            children: "Hmmm, Forget It? close! "
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
-          className: "z-10 relative w-72",
+          id: "signuppop",
+          className: "hidden z-10 relative w-72",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Signlog__WEBPACK_IMPORTED_MODULE_1__["default"].signupform, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+            onClick: function onClick(e) {
+              var loginpop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#loginpop");
+              var signuppop = _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"]._("#signuppop");
+              loginpop.classList.add("hidden");
+              signuppop.classList.add("hidden");
+            },
             className: "bg-white p-1 text-center border cursor-pointer rounded-md shadow-md",
-            children: " Forget it, close "
+            children: "Hmmm, Forget It? close! "
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
@@ -2383,7 +2412,7 @@ var signlog = {
             type: "email",
             name: "email",
             id: "email",
-            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md loginform",
             placeholder: "name@company.com",
             required: ""
           })]
@@ -2397,10 +2426,11 @@ var signlog = {
             name: "password",
             id: "password",
             placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md loginform",
             required: ""
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+          id: "loginform",
           className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
           children: "Login"
         })]
@@ -2421,11 +2451,11 @@ var signlog = {
             className: "block mb-1 text-sm font-medium",
             children: "Full Name"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            type: "confirm-password",
-            name: "confirm-password",
+            type: "text",
+            name: "name",
             id: "full-name",
             placeholder: "John Doe",
-            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md signupform",
             required: ""
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -2437,7 +2467,7 @@ var signlog = {
             type: "email",
             name: "email",
             id: "email",
-            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md signupform",
             placeholder: "johndoe@domain.com",
             required: ""
           })]
@@ -2451,10 +2481,11 @@ var signlog = {
             name: "password",
             id: "password",
             placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-            className: "bg-gray-50 border w-full box-border p-1 rounded-md",
+            className: "bg-gray-50 border w-full box-border p-1 rounded-md signupform",
             required: ""
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+          id: "signupform",
           className: "bg-gray-50 border w-full box-border p-1 rounded-md mt-4",
           children: "Create an account"
         })]

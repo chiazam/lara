@@ -143,7 +143,29 @@ export default function Heady(props) {
 
                 <section className="px-2 flex justify-center items-center">
 
-                    <button className="bg-gray-100 rounded-full border px-2 py-1 justify-center items-center flex">Signup/Login</button>
+                    <button className="bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex mr-1" onClick={function (e) {
+
+                        let loginpop = f._("#loginpop");
+
+                        let signuppop = f._("#signuppop");
+
+                        signuppop.classList.remove("hidden");
+
+                        loginpop.classList.add("hidden");
+
+                    }}>Signup</button>
+
+                    <button onClick={function (e) {
+
+                        let loginpop = f._("#loginpop");
+
+                        let signuppop = f._("#signuppop");
+
+                        loginpop.classList.remove("hidden");
+
+                        signuppop.classList.add("hidden");
+
+                    }} className="bg-gray-100 rounded-md border px-2 py-1 justify-center items-center flex">Login</button>
 
                 </section>
 
@@ -151,19 +173,39 @@ export default function Heady(props) {
 
             <section className="flex justify-end h-0">
 
-                <section className="hidden z-10 relative w-72">
+                <section id="loginpop" className="hidden z-10 relative w-72">
 
                     <signlog.loginform />
 
-                    <section className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md"> Forget it, close </section>
+                    <section onClick={function (e) {
+
+                        let loginpop = f._("#loginpop");
+
+                        let signuppop = f._("#signuppop");
+
+                        loginpop.classList.add("hidden");
+
+                        signuppop.classList.add("hidden");
+
+                    }} className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md">Hmmm, Forget It? close! </section>
 
                 </section>
 
-                <section className="z-10 relative w-72">
+                <section id="signuppop" className="hidden z-10 relative w-72">
 
                     <signlog.signupform />
 
-                    <section className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md"> Forget it, close </section>
+                    <section onClick={function (e) {
+
+                        let loginpop = f._("#loginpop");
+
+                        let signuppop = f._("#signuppop");
+
+                        loginpop.classList.add("hidden");
+
+                        signuppop.classList.add("hidden");
+
+                    }} className="bg-white p-1 text-center border cursor-pointer rounded-md shadow-md">Hmmm, Forget It? close! </section>
 
                 </section>
 
