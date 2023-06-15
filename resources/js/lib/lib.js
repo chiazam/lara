@@ -467,8 +467,14 @@ f.loggedincheck = function () {
 
 f.loggedincheck();
 
-console.log(!f.hasOwnProperty('logid'), "damn men");
+f.isloggedin = function () {
 
-f.spinpref(!f.hasOwnProperty('logid'));
+    return f.hasOwnProperty('logid');
+
+}
+
+console.log((!f.isloggedin()), "damn men");
+
+f.spinpref((!f.isloggedin()));
 
 export default f;

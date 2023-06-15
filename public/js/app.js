@@ -2199,7 +2199,12 @@ function Heady(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
       className: "w-full shadow-sm border-b top-0 fixed bg-white",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+      children: [_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].isloggedin() == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+        className: "text-center text-white bg-orange-600 px-1 pt-1",
+        children: ["Welcome to NewsViews, ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("b", {
+          children: [_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].logid.user.name, " !!!"]
+        })]
+      }) : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
         className: "flex items-center py-1",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           className: "px-2",
@@ -2223,7 +2228,14 @@ function Heady(props) {
               children: "Search"
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+        }), _lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].isloggedin() == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+          className: "px-2 flex justify-center items-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1",
+            onClick: function onClick(e) {},
+            children: "Logout"
+          })
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
           className: "px-2 flex justify-center items-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             className: "text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1",
@@ -2541,7 +2553,7 @@ function Timeline(props) {
       className: "py-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linebox",
-        className: "mt-20 px-2 max-w-3xl bg-white m-auto border"
+        className: "px-2 max-w-3xl bg-white m-auto border" + (_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"].isloggedin() == true ? " mt-28" : " mt-20")
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
         id: "linenext",
         className: "my-2 max-w-3xl m-auto"
@@ -2896,8 +2908,11 @@ f.loggedincheck = function () {
   }
 };
 f.loggedincheck();
-console.log(!f.hasOwnProperty('logid'), "damn men");
-f.spinpref(!f.hasOwnProperty('logid'));
+f.isloggedin = function () {
+  return f.hasOwnProperty('logid');
+};
+console.log(!f.isloggedin(), "damn men");
+f.spinpref(!f.isloggedin());
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (f);
 
 /***/ }),

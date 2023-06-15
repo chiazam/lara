@@ -113,6 +113,8 @@ export default function Heady(props) {
 
         <header className="w-full shadow-sm border-b top-0 fixed bg-white">
 
+            {((f.isloggedin() == true) ? (<section className="text-center text-white bg-orange-600 px-1 pt-1">Welcome to NewsViews, <b>{f.logid.user.name} !!!</b></section>) : (""))}
+
             <section className="flex items-center py-1">
 
                 <section className="px-2">
@@ -141,7 +143,13 @@ export default function Heady(props) {
 
                 </section>
 
-                <section className="px-2 flex justify-center items-center">
+                {((f.isloggedin() == true) ? (<section className="px-2 flex justify-center items-center">
+
+                    <button className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1" onClick={function (e) {
+
+                    }}>Logout</button>
+
+                </section>) : (<section className="px-2 flex justify-center items-center">
 
                     <button className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex mr-1" onClick={function (e) {
 
@@ -167,7 +175,7 @@ export default function Heady(props) {
 
                     }} className="text-white bg-orange-600 rounded-md border px-2 py-1 justify-center items-center flex">Login</button>
 
-                </section>
+                </section>))}
 
             </section>
 
