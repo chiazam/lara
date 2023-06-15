@@ -401,8 +401,6 @@ class Start
         $table = DB::table("news");
 
         return $table->select($request['sort'])->offset($request['offset'])->limit($request['limit'])->inRandomOrder()->distinct()->get();
-
-        $table = DB::table("news");
     }
 
     static function BulkSaveToDB(string $table, array $bulkdata)
